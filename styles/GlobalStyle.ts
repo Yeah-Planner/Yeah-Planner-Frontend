@@ -23,6 +23,13 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     outline: none;
     box-sizing: inherit;
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+      color: #000;
+    }
   }
 `
 
