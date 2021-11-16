@@ -1,8 +1,23 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
+import Header from '../components/Header/Header'
 import GlobalStyle from '../styles/GlobalStyle'
 import { theme } from '../styles/theme'
+
+const Content = styled.div`
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 480px;
+  width: calc(100% - 2rem);
+  @media (max-width: 960px) {
+    width: calc(960px - 2rem);
+  }
+  @media (max-width: 768px) {
+    width: calc(768px - 2rem);
+  }
+`
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +27,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Header />
+        <Content>
+          <Component {...pageProps} />
+        </Content>
       </ThemeProvider>
     </>
   )
