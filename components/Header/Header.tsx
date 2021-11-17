@@ -1,21 +1,27 @@
 import { NextPage } from 'next'
+import Link from 'next/link'
 import {
   HeaderContentStyle,
+  HeaderLoginBtn,
   HeaderLogoLinkStyle,
   HeaderLogoStyle,
   HeaderStyle,
 } from './Header.style'
 
-const Header: NextPage = () => {
+interface Props {
+  login: boolean
+}
+
+const Header: NextPage<Props> = ({ login }) => {
   return (
     <HeaderStyle>
       <HeaderContentStyle>
         <HeaderLogoStyle>
-          <HeaderLogoLinkStyle href="/">
-            <a>Yeah-Planner</a>
-          </HeaderLogoLinkStyle>
+          <Link href="/">
+            <HeaderLogoLinkStyle>Yeah-Planner</HeaderLogoLinkStyle>
+          </Link>
         </HeaderLogoStyle>
-        <div>test</div>
+        {login ? <div>logout</div> : <HeaderLoginBtn>Login</HeaderLoginBtn>}
       </HeaderContentStyle>
     </HeaderStyle>
   )

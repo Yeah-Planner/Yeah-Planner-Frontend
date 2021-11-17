@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header />
+        <Header login={false} />
         <Content>
           <Component {...pageProps} />
         </Content>

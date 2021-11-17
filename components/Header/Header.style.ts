@@ -25,14 +25,37 @@ export const HeaderLogoStyle = styled.h1`
   font-size: 1.5rem;
 `
 
-export const HeaderLogoLinkStyle = styled(Link)`
+export const HeaderLogoLinkStyle = styled.a`
   text-decoration: none;
   color: #000;
+  cursor: pointer;
+  user-select: none;
+
   &:focus,
   &:hover,
   &:visited,
   &:link,
   &:active {
     color: #000;
+  }
+`
+
+export const HeaderLoginBtn = styled.button`
+  background-color: #fff;
+  color: black;
+  font-size: 1rem;
+  height: 2rem;
+  padding: 0 1rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  outline: none;
+  border: 2px solid black;
+  word-break: keep-all;
+  transition: all 0.125s ease-in 0s;
+
+  &:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
   }
 `
