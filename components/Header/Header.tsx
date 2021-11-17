@@ -7,12 +7,14 @@ import {
   HeaderLogoStyle,
   HeaderStyle,
 } from './Header.style'
+import HeaderProfile from './HeaderProfile'
 
 interface Props {
   login: boolean
+  setLogin(v: boolean): void
 }
 
-const Header: NextPage<Props> = ({ login }) => {
+const Header: NextPage<Props> = ({ login, setLogin }) => {
   return (
     <HeaderStyle>
       <HeaderContentStyle>
@@ -22,9 +24,17 @@ const Header: NextPage<Props> = ({ login }) => {
           </Link>
         </HeaderLogoStyle>
         {login ? (
-          <div>logout</div>
+          <HeaderProfile />
         ) : (
-          <HeaderLoginBtnStyle>Login</HeaderLoginBtnStyle>
+          <HeaderLoginBtnStyle
+            onClick={e => {
+              e.preventDefault()
+              e.stopPropagation()
+              setLogin(true)
+            }}
+          >
+            로그인
+          </HeaderLoginBtnStyle>
         )}
       </HeaderContentStyle>
     </HeaderStyle>

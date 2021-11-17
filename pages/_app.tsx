@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import Header from '../components/Header/Header'
 import GlobalStyle from '../styles/GlobalStyle'
@@ -14,6 +15,8 @@ const Content = styled.div`
 `
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [login, setLogin] = useState(false)
+
   return (
     <>
       <Head>
@@ -21,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header login={false} />
+        <Header login={login} setLogin={setLogin} />
         <Content>
           <Component {...pageProps} />
         </Content>
