@@ -40,7 +40,7 @@ export const HeaderLogoLinkStyle = styled.a`
   }
 `
 
-export const HeaderLoginBtn = styled.button`
+export const HeaderLoginBtnStyle = styled.button`
   background-color: #fff;
   color: black;
   font-size: 1rem;

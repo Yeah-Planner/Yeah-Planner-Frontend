@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import {
   HeaderContentStyle,
-  HeaderLoginBtn,
+  HeaderLoginBtnStyle,
   HeaderLogoLinkStyle,
   HeaderLogoStyle,
   HeaderStyle,
@@ -17,11 +17,15 @@ const Header: NextPage<Props> = ({ login }) => {
     <HeaderStyle>
       <HeaderContentStyle>
         <HeaderLogoStyle>
-          <Link href="/">
+          <Link href="/" passHref>
             <HeaderLogoLinkStyle>Yeah-Planner</HeaderLogoLinkStyle>
           </Link>
         </HeaderLogoStyle>
-        {login ? <div>logout</div> : <HeaderLoginBtn>Login</HeaderLoginBtn>}
+        {login ? (
+          <div>logout</div>
+        ) : (
+          <HeaderLoginBtnStyle>Login</HeaderLoginBtnStyle>
+        )}
       </HeaderContentStyle>
     </HeaderStyle>
   )
