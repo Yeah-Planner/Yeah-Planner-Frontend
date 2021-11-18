@@ -34,4 +34,23 @@ export const LoginWrapperStyle = styled.div`
   height: 480px;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
   display: flex;
+  flex-direction: column;
+  padding: 1rem;
+`
+
+export const ExitWrappterStyle = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: rgb(134, 142, 150);
+  margin-bottom: 2.25rem;
+`
+
+export const ExitWrappterSvgStyle = styled.svg`
+  cursor: pointer;
+  stroke: currentColor;
+  fill: currentColor;
+  stroke-width: 0;
+  height: 1em;
+  width: 1em;
 `
