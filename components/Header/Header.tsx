@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
-import LoginPopup from '../Login/LoginPopup'
+import LoginPopup from './Popup'
 import {
   HeaderContentStyle,
   HeaderLoginBtnStyle,
@@ -18,6 +18,7 @@ interface Props {
 
 const Header: NextPage<Props> = ({ login, setLogin }) => {
   const [showLoginPopup, setShowLoginPopup] = useState(false)
+  const [isLogin, setIsLogin] = useState(true)
 
   return (
     <HeaderStyle>
@@ -41,7 +42,10 @@ const Header: NextPage<Props> = ({ login, setLogin }) => {
               로그인
             </HeaderLoginBtnStyle>
             {showLoginPopup && (
-              <LoginPopup handleClose={() => setShowLoginPopup(false)} />
+              <LoginPopup
+                handleClose={() => setShowLoginPopup(false)}
+                isLogin={isLogin}
+              />
             )}
           </>
         )}
