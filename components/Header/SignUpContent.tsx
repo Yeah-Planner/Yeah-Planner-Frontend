@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import {
   CreateAccountStyle,
   LoginBodyStyle,
@@ -19,38 +18,40 @@ interface Props {
   setIsLogin: (v: boolean) => void
 }
 
-const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
+const SignUpContent: NextPage<Props> = ({ setIsLogin }) => {
   return (
     <LoginContentStyle>
       <LoginBodyStyle>
-        <LoginTitleStyle>로그인</LoginTitleStyle>
-        <LoginWithTitleStyle>Yeah-Planner 계정으로 로그인</LoginWithTitleStyle>
+        <LoginTitleStyle>회원가입</LoginTitleStyle>
+        <LoginWithTitleStyle>Yeah-Planner 계정 만들기</LoginWithTitleStyle>
         <LoginWithYeahContainerStyle>
           <LoginInputContainerStyle>
             <LoginInputStyle type="email" placeholder="이메일" />
+            <LoginInputStyle type="text" placeholder="이름" />
             <LoginInputStyle type="password" placeholder="비밀번호" />
+            <LoginInputStyle type="password" placeholder="비밀번호 확인" />
           </LoginInputContainerStyle>
-          <LoginButtonStyle>로그인</LoginButtonStyle>
+          <LoginButtonStyle>회원가입</LoginButtonStyle>
         </LoginWithYeahContainerStyle>
-        <LoginWithTitleStyle>소셜 계정으로 로그인</LoginWithTitleStyle>
+        {/* <LoginWithTitleStyle>소셜 계정으로 회원가입</LoginWithTitleStyle>
         <LoginWithSocialContainerStyle>
           Coming Soon
-        </LoginWithSocialContainerStyle>
+        </LoginWithSocialContainerStyle> */}
       </LoginBodyStyle>
       <CreateAccountStyle>
-        <NotHaveAccountStyle>계정이 없으신가요?</NotHaveAccountStyle>
+        <NotHaveAccountStyle>이미 계정이 있으신가요?</NotHaveAccountStyle>
         <SignUpLinkStyle
           onClick={e => {
             e.preventDefault()
             e.stopPropagation()
-            setIsLogin(false)
+            setIsLogin(true)
           }}
         >
-          회원가입
+          로그인
         </SignUpLinkStyle>
       </CreateAccountStyle>
     </LoginContentStyle>
   )
 }
 
-export default LoginContent
+export default SignUpContent

@@ -45,6 +45,7 @@ const Header: NextPage<Props> = ({ login, setLogin }) => {
               <LoginPopup
                 handleClose={() => setShowLoginPopup(false)}
                 isLogin={isLogin}
+                setIsLogin={setIsLogin}
               />
             )}
           </>
