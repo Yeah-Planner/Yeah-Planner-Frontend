@@ -2,17 +2,17 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import {
   CreateAccountStyle,
-  LoginBodyStyle,
-  LoginButtonStyle,
-  LoginContentStyle,
-  LoginInputContainerStyle,
-  LoginInputStyle,
-  LoginTitleStyle,
-  LoginWithSocialContainerStyle,
-  LoginWithTitleStyle,
-  LoginWithYeahContainerStyle,
+  AuthBodyStyle,
+  AuthButtonStyle,
+  AuthContentStyle,
+  AuthInputContainerStyle,
+  AuthInputStyle,
+  AuthTitleStyle,
+  AuthWithSocialContainerStyle,
+  AuthWithTitleStyle,
+  AuthWithYeahContainerStyle,
   NotHaveAccountStyle,
-  SignUpLinkStyle,
+  ToggleModeLinkStyle,
 } from './Login.style'
 
 interface Props {
@@ -21,25 +21,23 @@ interface Props {
 
 const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
   return (
-    <LoginContentStyle>
-      <LoginBodyStyle>
-        <LoginTitleStyle>로그인</LoginTitleStyle>
-        <LoginWithTitleStyle>Yeah-Planner 계정으로 로그인</LoginWithTitleStyle>
-        <LoginWithYeahContainerStyle>
-          <LoginInputContainerStyle>
-            <LoginInputStyle type="email" placeholder="이메일" />
-            <LoginInputStyle type="password" placeholder="비밀번호" />
-          </LoginInputContainerStyle>
-          <LoginButtonStyle>로그인</LoginButtonStyle>
-        </LoginWithYeahContainerStyle>
-        <LoginWithTitleStyle>소셜 계정으로 로그인</LoginWithTitleStyle>
-        <LoginWithSocialContainerStyle>
-          Coming Soon
-        </LoginWithSocialContainerStyle>
-      </LoginBodyStyle>
+    <AuthContentStyle>
+      <AuthBodyStyle>
+        <AuthTitleStyle>로그인</AuthTitleStyle>
+        <AuthWithTitleStyle>Yeah-Planner 계정으로 로그인</AuthWithTitleStyle>
+        <AuthWithYeahContainerStyle>
+          <AuthInputContainerStyle>
+            <AuthInputStyle type="email" placeholder="이메일" />
+            <AuthInputStyle type="password" placeholder="비밀번호" />
+          </AuthInputContainerStyle>
+          <AuthButtonStyle>로그인</AuthButtonStyle>
+        </AuthWithYeahContainerStyle>
+        <AuthWithTitleStyle>소셜 계정으로 로그인</AuthWithTitleStyle>
+        <AuthWithSocialContainerStyle>Coming Soon</AuthWithSocialContainerStyle>
+      </AuthBodyStyle>
       <CreateAccountStyle>
         <NotHaveAccountStyle>계정이 없으신가요?</NotHaveAccountStyle>
-        <SignUpLinkStyle
+        <ToggleModeLinkStyle
           onClick={e => {
             e.preventDefault()
             e.stopPropagation()
@@ -47,9 +45,9 @@ const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
           }}
         >
           회원가입
-        </SignUpLinkStyle>
+        </ToggleModeLinkStyle>
       </CreateAccountStyle>
-    </LoginContentStyle>
+    </AuthContentStyle>
   )
 }
 

@@ -15,7 +15,7 @@ const showAnimation = keyframes`
   }
 `
 
-export const LoginFixedContainerStyle = styled.div`
+export const AuthFixedContainerStyle = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -28,7 +28,7 @@ export const LoginFixedContainerStyle = styled.div`
   justify-content: center;
 `
 
-export const LoginWrapperStyle = styled.div`
+export const AuthWrapperStyle = styled.div`
   background: #fff;
   animation: 0.4s ease-in-out 0s 1 normal forwards running ${showAnimation};
   width: 360px;
@@ -56,25 +56,25 @@ export const ExitWrappterSvgStyle = styled.svg`
   width: 1em;
 `
 
-export const LoginTitleStyle = styled.h2`
+export const AuthTitleStyle = styled.h2`
   font-size: 1.4rem;
 `
 
-export const LoginWithTitleStyle = styled.h4`
+export const AuthWithTitleStyle = styled.h4`
   margin: 1rem 0;
   color: rgb(134, 142, 150);
 `
 
-export const LoginWithYeahContainerStyle = styled.div`
+export const AuthWithYeahContainerStyle = styled.div`
   margin-bottom: 2rem;
   display: flex;
 `
 
-export const LoginInputContainerStyle = styled.div`
+export const AuthInputContainerStyle = styled.div`
   flex: 1 1 0;
 `
 
-export const LoginInputStyle = styled.input`
+export const AuthInputStyle = styled.input`
   width: 100%;
   font-size: 1rem;
   padding: 0.75rem;
@@ -83,7 +83,7 @@ export const LoginInputStyle = styled.input`
   border: 1px solid rgb(222, 226, 230);
 `
 
-export const LoginButtonStyle = styled.button`
+export const AuthButtonStyle = styled.button`
   width: 5rem;
   font-size: 1rem;
   border: 1px solid rgb(222, 226, 230);
@@ -99,11 +99,11 @@ export const LoginButtonStyle = styled.button`
   }
 `
 
-export const LoginWithSocialContainerStyle = styled.div`
+export const AuthWithSocialContainerStyle = styled.div`
   height: 48px;
 `
 
-export const LoginContentStyle = styled.div`
+export const AuthContentStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -111,7 +111,7 @@ export const LoginContentStyle = styled.div`
   height: 100%;
 `
 
-export const LoginBodyStyle = styled.div``
+export const AuthBodyStyle = styled.div``
 
 export const CreateAccountStyle = styled.div`
   text-align: right;
@@ -121,7 +121,7 @@ export const NotHaveAccountStyle = styled.span`
   margin-right: 0.25rem;
 `
 
-export const SignUpLinkStyle = styled.div`
+export const ToggleModeLinkStyle = styled.div`
   cursor: pointer;
   color: rgb(18, 184, 134);
   font-weight: bold;
@@ -130,4 +130,8 @@ export const SignUpLinkStyle = styled.div`
   &:hover {
     text-decoration: underline;
   }
+`
+
+export const ErrorMessageStyle = styled.p`
+  color: red;
 `
