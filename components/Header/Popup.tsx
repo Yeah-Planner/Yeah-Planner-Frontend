@@ -2,9 +2,9 @@ import { NextPage } from 'next'
 import {
   ExitWrappterStyle,
   ExitWrappterSvgStyle,
-  LoginFixedContainerStyle,
-  LoginWrapperStyle,
-} from './Login.style'
+  AuthFixedContainerStyle,
+  AuthWrapperStyle,
+} from './Auth.style'
 import LoginContent from './LoginContent'
 import SignUpContent from './SignUpContent'
 
@@ -16,8 +16,8 @@ interface Props {
 
 const LoginPopup: NextPage<Props> = ({ handleClose, isLogin, setIsLogin }) => {
   return (
-    <LoginFixedContainerStyle>
-      <LoginWrapperStyle>
+    <AuthFixedContainerStyle>
+      <AuthWrapperStyle>
         <ExitWrappterStyle>
           <ExitWrappterSvgStyle
             viewBox="0 0 24 24"
@@ -36,8 +36,8 @@ const LoginPopup: NextPage<Props> = ({ handleClose, isLogin, setIsLogin }) => {
         ) : (
           <SignUpContent setIsLogin={setIsLogin} />
         )}
-      </LoginWrapperStyle>
-    </LoginFixedContainerStyle>
+      </AuthWrapperStyle>
+    </AuthFixedContainerStyle>
   )
 }
 

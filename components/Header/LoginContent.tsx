@@ -1,45 +1,87 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { emailRegexp, pwRegexp } from '../../util/util'
 import {
   CreateAccountStyle,
-  LoginBodyStyle,
-  LoginButtonStyle,
-  LoginContentStyle,
-  LoginInputContainerStyle,
-  LoginInputStyle,
-  LoginTitleStyle,
-  LoginWithSocialContainerStyle,
-  LoginWithTitleStyle,
-  LoginWithYeahContainerStyle,
+  AuthBodyStyle,
+  AuthButtonStyle,
+  AuthContentStyle,
+  AuthInputContainerStyle,
+  AuthInputStyle,
+  AuthTitleStyle,
+  AuthWithSocialContainerStyle,
+  AuthWithTitleStyle,
+  AuthWithYeahContainerStyle,
   NotHaveAccountStyle,
-  SignUpLinkStyle,
-} from './Login.style'
+  ToggleModeLinkStyle,
+  ErrorMessageStyle,
+} from './Auth.style'
 
 interface Props {
   setIsLogin: (v: boolean) => void
 }
 
 const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
+  const [badInput, setBadInput] = useState(false)
+  const [error, setError] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const checkInput = () => {
+    if (!emailRegexp.test(email)) {
+      setBadInput(true)
+      setError('유효하지 않은 이메일입니다.')
+    } else if (!pwRegexp.test(password)) {
+      setBadInput(true)
+      setError('비밀번호는 특수문자, 알파벳으로 8자리 이상이어야합니다.')
+    } else {
+      setBadInput(false)
+      setError('')
+    }
+  }
+
   return (
-    <LoginContentStyle>
-      <LoginBodyStyle>
-        <LoginTitleStyle>로그인</LoginTitleStyle>
-        <LoginWithTitleStyle>Yeah-Planner 계정으로 로그인</LoginWithTitleStyle>
-        <LoginWithYeahContainerStyle>
-          <LoginInputContainerStyle>
-            <LoginInputStyle type="email" placeholder="이메일" />
-            <LoginInputStyle type="password" placeholder="비밀번호" />
-          </LoginInputContainerStyle>
-          <LoginButtonStyle>로그인</LoginButtonStyle>
-        </LoginWithYeahContainerStyle>
-        <LoginWithTitleStyle>소셜 계정으로 로그인</LoginWithTitleStyle>
-        <LoginWithSocialContainerStyle>
-          Coming Soon
-        </LoginWithSocialContainerStyle>
-      </LoginBodyStyle>
+    <AuthContentStyle>
+      <AuthBodyStyle>
+        <AuthTitleStyle>로그인</AuthTitleStyle>
+        <AuthWithTitleStyle>Yeah-Planner 계정으로 로그인</AuthWithTitleStyle>
+        <div>
+          <AuthWithYeahContainerStyle>
+            <AuthInputContainerStyle>
+              <AuthInputStyle
+                type="email"
+                placeholder="이메일"
+                value={email}
+                onChange={({ target: { value } }) => setEmail(value)}
+              />
+              <AuthInputStyle
+                type="password"
+                placeholder="비밀번호"
+                value={password}
+                onChange={({ target: { value } }) => setPassword(value)}
+              />
+            </AuthInputContainerStyle>
+            <AuthButtonStyle
+              onClick={e => {
+                e.preventDefault()
+                e.stopPropagation()
+                checkInput()
+                if (!badInput) {
+                  // TODO: Login Request
+                }
+              }}
+            >
+              로그인
+            </AuthButtonStyle>
+          </AuthWithYeahContainerStyle>
+          {badInput && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
+        </div>
+        <AuthWithTitleStyle>소셜 계정으로 로그인</AuthWithTitleStyle>
+        <AuthWithSocialContainerStyle>Coming Soon</AuthWithSocialContainerStyle>
+      </AuthBodyStyle>
       <CreateAccountStyle>
         <NotHaveAccountStyle>계정이 없으신가요?</NotHaveAccountStyle>
-        <SignUpLinkStyle
+        <ToggleModeLinkStyle
           onClick={e => {
             e.preventDefault()
             e.stopPropagation()
@@ -47,9 +89,9 @@ const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
           }}
         >
           회원가입
-        </SignUpLinkStyle>
+        </ToggleModeLinkStyle>
       </CreateAccountStyle>
-    </LoginContentStyle>
+    </AuthContentStyle>
   )
 }
 
