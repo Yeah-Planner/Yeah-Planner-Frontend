@@ -15,7 +15,7 @@ import {
   NotHaveAccountStyle,
   ToggleModeLinkStyle,
   ErrorMessageStyle,
-} from './Login.style'
+} from './Auth.style'
 
 interface Props {
   setIsLogin: (v: boolean) => void

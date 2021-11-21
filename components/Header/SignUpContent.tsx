@@ -14,7 +14,7 @@ import {
   AuthWithYeahContainerStyle,
   NotHaveAccountStyle,
   ToggleModeLinkStyle,
-} from './Login.style'
+} from './Auth.style'
 
 interface Props {
   setIsLogin: (v: boolean) => void

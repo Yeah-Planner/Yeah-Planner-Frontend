@@ -4,7 +4,7 @@ import {
   ExitWrappterSvgStyle,
   AuthFixedContainerStyle,
   AuthWrapperStyle,
-} from './Login.style'
+} from './Auth.style'
 import LoginContent from './LoginContent'
 import SignUpContent from './SignUpContent'
 
