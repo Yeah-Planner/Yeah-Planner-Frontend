@@ -15,7 +15,7 @@ const Content = styled.div`
 `
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [login, setLogin] = useState(false)
+  // TODO: make api that calls the backend auth, and checks if the user is logged in
 
   return (
     <>
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header login={login} setLogin={setLogin} />
+        <Header />
         <Content>
           <Component {...pageProps} />
         </Content>

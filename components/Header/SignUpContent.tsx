@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosError } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { backend, emailRegexp, pwRegexp } from '../../util/util'

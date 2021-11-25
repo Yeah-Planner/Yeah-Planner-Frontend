@@ -10,15 +10,17 @@ import {
   HeaderStyle,
 } from './Header.style'
 import HeaderProfile from './HeaderProfile'
+// import Cookies from 'cookies'
 
 interface Props {
-  login: boolean
-  setLogin(v: boolean): void
+  login?: boolean
 }
 
-const Header: NextPage<Props> = ({ login, setLogin }) => {
+const Header: NextPage<Props> = ({ login }) => {
   const [showLoginPopup, setShowLoginPopup] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
+
+  console.log(login)
 
   return (
     <HeaderStyle>
@@ -54,5 +56,18 @@ const Header: NextPage<Props> = ({ login, setLogin }) => {
     </HeaderStyle>
   )
 }
+
+// Header.getInitialProps = async ({ req, res }) => {
+//   if (!req) {
+//     return { login: false }
+//   }
+
+//   const cookies = new Cookies(req, res!)
+//   const login = cookies.get('login')
+//   console.log(login)
+//   return {
+//     login: true,
+//   }
+// }
 
 export default Header
