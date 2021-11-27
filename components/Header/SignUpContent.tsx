@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { loginUser } from '../../storage/storage'
 import { backend, emailRegexp, pwRegexp } from '../../util/util'
 import {
   CreateAccountStyle,
@@ -19,6 +21,7 @@ import {
 
 interface Props {
   setIsLogin: (v: boolean) => void
+  handleClose(): void
 }
 
 interface SignUpResponse {
@@ -28,7 +31,7 @@ interface SignUpResponse {
   bio: string
 }
 
-const SignUpContent: NextPage<Props> = ({ setIsLogin }) => {
+const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
   const [badInput, setBadInput] = useState(false)
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
@@ -60,12 +63,15 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin }) => {
     if (badInput) return
 
     try {
-      const res = await axios.post<SignUpResponse>(`${backend()}/user`, {
+      const { data } = await axios.post<SignUpResponse>(`${backend()}/user`, {
         email,
         username,
         password,
       })
-      // TODO: 성공시 로그인 상태로 변경
+
+      loginUser(data)
+      useRouter().push('/')
+      handleClose()
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const err = e as AxiosError<SignUpResponse>

@@ -34,7 +34,7 @@ const LoginPopup: NextPage<Props> = ({ handleClose, isLogin, setIsLogin }) => {
         {isLogin ? (
           <LoginContent setIsLogin={setIsLogin} />
         ) : (
-          <SignUpContent setIsLogin={setIsLogin} />
+          <SignUpContent setIsLogin={setIsLogin} handleClose={handleClose} />
         )}
       </AuthWrapperStyle>
     </AuthFixedContainerStyle>

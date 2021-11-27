@@ -13,14 +13,12 @@ import HeaderProfile from './HeaderProfile'
 // import Cookies from 'cookies'
 
 interface Props {
-  login?: boolean
+  login: boolean
 }
 
 const Header: NextPage<Props> = ({ login }) => {
   const [showLoginPopup, setShowLoginPopup] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
-
-  console.log(login)
 
   return (
     <HeaderStyle>
