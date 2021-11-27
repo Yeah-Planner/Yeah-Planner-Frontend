@@ -70,8 +70,7 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
       })
 
       loginUser(data)
-      useRouter().push('/')
-      handleClose()
+      useRouter().replace('/')
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const err = e as AxiosError<SignUpResponse>
