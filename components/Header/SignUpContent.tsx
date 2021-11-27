@@ -1,6 +1,9 @@
+import axios, { AxiosError } from 'axios'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { emailRegexp, pwRegexp } from '../../util/util'
+import { loginUser } from '../../storage/storage'
+import { backend, emailRegexp, pwRegexp } from '../../util/util'
 import {
   CreateAccountStyle,
   ErrorMessageStyle,
@@ -18,9 +21,17 @@ import {
 
 interface Props {
   setIsLogin: (v: boolean) => void
+  handleClose(): void
 }
 
-const SignUpContent: NextPage<Props> = ({ setIsLogin }) => {
+interface SignUpResponse {
+  uuid: string
+  email: string
+  username: string
+  bio: string
+}
+
+const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
   const [badInput, setBadInput] = useState(false)
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
@@ -44,6 +55,42 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin }) => {
     } else {
       setBadInput(false)
       setError('')
+    }
+  }
+
+  const signUp = async () => {
+    checkInput()
+    if (badInput) return
+
+    try {
+      const { data } = await axios.post<SignUpResponse>(`${backend()}/user`, {
+        email,
+        username,
+        password,
+      })
+
+      loginUser(data)
+      useRouter().replace('/')
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        const err = e as AxiosError<SignUpResponse>
+
+        if (err.response?.status === 409) {
+          setBadInput(true)
+          setError('이미 존재하는 이메일입니다.')
+          return
+        } else {
+          setBadInput(true)
+          setError('서버에 오류가 발생했습니다.')
+          console.error(err)
+          return
+        }
+      } else {
+        setBadInput(true)
+        setError('오류가 발생했습니다.')
+        console.error(e)
+        return
+      }
     }
   }
 
@@ -87,13 +134,10 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin }) => {
               />
             </AuthInputContainerStyle>
             <AuthButtonStyle
-              onClick={e => {
+              onClick={async e => {
                 e.preventDefault()
                 e.stopPropagation()
-                checkInput()
-                if (!badInput) {
-                  // TODO: Sign up request
-                }
+                signUp()
               }}
             >
               회원가입

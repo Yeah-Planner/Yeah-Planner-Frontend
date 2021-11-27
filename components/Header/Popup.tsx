@@ -14,7 +14,7 @@ interface Props {
   setIsLogin: (v: boolean) => void
 }
 
-const LoginPopup: NextPage<Props> = ({ handleClose, isLogin, setIsLogin }) => {
+const AuthPopup: NextPage<Props> = ({ handleClose, isLogin, setIsLogin }) => {
   return (
     <AuthFixedContainerStyle>
       <AuthWrapperStyle>
@@ -34,11 +34,11 @@ const LoginPopup: NextPage<Props> = ({ handleClose, isLogin, setIsLogin }) => {
         {isLogin ? (
           <LoginContent setIsLogin={setIsLogin} />
         ) : (
-          <SignUpContent setIsLogin={setIsLogin} />
+          <SignUpContent setIsLogin={setIsLogin} handleClose={handleClose} />
         )}
       </AuthWrapperStyle>
     </AuthFixedContainerStyle>
   )
 }
 
-export default LoginPopup
+export default AuthPopup

@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
-import LoginPopup from './Popup'
+import AuthPopup from './Popup'
 import {
   HeaderContentStyle,
   HeaderLoginBtnStyle,
@@ -10,13 +10,13 @@ import {
   HeaderStyle,
 } from './Header.style'
 import HeaderProfile from './HeaderProfile'
+// import Cookies from 'cookies'
 
 interface Props {
   login: boolean
-  setLogin(v: boolean): void
 }
 
-const Header: NextPage<Props> = ({ login, setLogin }) => {
+const Header: NextPage<Props> = ({ login }) => {
   const [showLoginPopup, setShowLoginPopup] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
 
@@ -42,7 +42,7 @@ const Header: NextPage<Props> = ({ login, setLogin }) => {
               로그인
             </HeaderLoginBtnStyle>
             {showLoginPopup && (
-              <LoginPopup
+              <AuthPopup
                 handleClose={() => setShowLoginPopup(false)}
                 isLogin={isLogin}
                 setIsLogin={setIsLogin}
@@ -54,5 +54,18 @@ const Header: NextPage<Props> = ({ login, setLogin }) => {
     </HeaderStyle>
   )
 }
+
+// Header.getInitialProps = async ({ req, res }) => {
+//   if (!req) {
+//     return { login: false }
+//   }
+
+//   const cookies = new Cookies(req, res!)
+//   const login = cookies.get('login')
+//   console.log(login)
+//   return {
+//     login: true,
+//   }
+// }
 
 export default Header
