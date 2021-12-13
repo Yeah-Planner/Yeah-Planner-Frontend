@@ -18,17 +18,11 @@ import {
   NotHaveAccountStyle,
   ToggleModeLinkStyle,
 } from './Auth.style'
+import { UserResponse } from './Auth.type'
 
 interface Props {
   setIsLogin: (v: boolean) => void
   handleClose(): void
-}
-
-interface SignUpResponse {
-  uuid: string
-  email: string
-  username: string
-  bio: string
 }
 
 const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
@@ -38,42 +32,47 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [username, setUsername] = useState('')
+  const router = useRouter()
 
   const checkInput = () => {
     if (!emailRegexp.test(email)) {
       setBadInput(true)
       setError('유효하지 않은 이메일입니다.')
+      return true
     } else if (!pwRegexp.test(password)) {
       setBadInput(true)
       setError('비밀번호는 특수문자, 알파벳으로 8자리 이상이어야합니다.')
+      return true
     } else if (password !== passwordConfirm) {
       setBadInput(true)
       setError('비밀번호가 일치하지 않습니다.')
+      return true
     } else if (username.length == 0 || username.length > 20) {
       setBadInput(true)
       setError('이름은 20자 이하여야합니다.')
+      return true
     } else {
       setBadInput(false)
       setError('')
+      return false
     }
   }
 
   const signUp = async () => {
-    checkInput()
-    if (badInput) return
+    if (checkInput()) return
 
     try {
-      const { data } = await axios.post<SignUpResponse>(`${backend()}/user`, {
+      const { data } = await axios.post<UserResponse>(`${backend()}/user`, {
         email,
         username,
         password,
       })
 
       loginUser(data)
-      useRouter().replace('/')
+      router.replace('/')
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        const err = e as AxiosError<SignUpResponse>
+        const err = e as AxiosError<UserResponse>
 
         if (err.response?.status === 409) {
           setBadInput(true)
@@ -81,7 +80,7 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
           return
         } else {
           setBadInput(true)
-          setError('서버에 오류가 발생했습니다.')
+          setError('알 수 없는 오류가 발생했습니다.')
           console.error(err)
           return
         }
@@ -93,6 +92,9 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
       }
     }
   }
+
+  const signupOnEnter = ({ key }: React.KeyboardEvent<HTMLInputElement>) =>
+    key === 'Enter' && signUp()
 
   return (
     <AuthContentStyle>
@@ -109,12 +111,14 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
                 onChange={({ target: { value } }) =>
                   setEmail(value.replaceAll(' ', ''))
                 }
+                onKeyPress={signupOnEnter}
               />
               <AuthInputStyle
                 type="text"
                 placeholder="이름"
                 value={username}
                 onChange={({ target: { value } }) => setUsername(value.trim())}
+                onKeyPress={signupOnEnter}
               />
               <AuthInputStyle
                 type="password"
@@ -123,6 +127,7 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
                 onChange={({ target: { value } }) =>
                   setPassword(value.replaceAll(' ', ''))
                 }
+                onKeyPress={signupOnEnter}
               />
               <AuthInputStyle
                 type="password"
@@ -131,6 +136,7 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
                 onChange={({ target: { value } }) =>
                   setPasswordConfirm(value.replaceAll(' ', ''))
                 }
+                onKeyPress={signupOnEnter}
               />
             </AuthInputContainerStyle>
             <AuthButtonStyle
