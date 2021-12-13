@@ -93,6 +93,9 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
     }
   }
 
+  const signupOnEnter = ({ key }: React.KeyboardEvent<HTMLInputElement>) =>
+    key === 'Enter' && signUp()
+
   return (
     <AuthContentStyle>
       <AuthBodyStyle>
@@ -108,12 +111,14 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
                 onChange={({ target: { value } }) =>
                   setEmail(value.replaceAll(' ', ''))
                 }
+                onKeyPress={signupOnEnter}
               />
               <AuthInputStyle
                 type="text"
                 placeholder="이름"
                 value={username}
                 onChange={({ target: { value } }) => setUsername(value.trim())}
+                onKeyPress={signupOnEnter}
               />
               <AuthInputStyle
                 type="password"
@@ -122,6 +127,7 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
                 onChange={({ target: { value } }) =>
                   setPassword(value.replaceAll(' ', ''))
                 }
+                onKeyPress={signupOnEnter}
               />
               <AuthInputStyle
                 type="password"
@@ -130,6 +136,7 @@ const SignUpContent: NextPage<Props> = ({ setIsLogin, handleClose }) => {
                 onChange={({ target: { value } }) =>
                   setPasswordConfirm(value.replaceAll(' ', ''))
                 }
+                onKeyPress={signupOnEnter}
               />
             </AuthInputContainerStyle>
             <AuthButtonStyle

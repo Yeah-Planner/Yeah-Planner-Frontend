@@ -87,6 +87,9 @@ const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
     }
   }
 
+  const loginOnEnter = ({ key }: React.KeyboardEvent<HTMLInputElement>) =>
+    key === 'Enter' && login()
+
   return (
     <AuthContentStyle>
       <AuthBodyStyle>
@@ -100,12 +103,14 @@ const LoginContent: NextPage<Props> = ({ setIsLogin }) => {
                 placeholder="이메일"
                 value={email}
                 onChange={({ target: { value } }) => setEmail(value)}
+                onKeyDown={loginOnEnter}
               />
               <AuthInputStyle
                 type="password"
                 placeholder="비밀번호"
                 value={password}
                 onChange={({ target: { value } }) => setPassword(value)}
+                onKeyDown={loginOnEnter}
               />
             </AuthInputContainerStyle>
             <AuthButtonStyle
