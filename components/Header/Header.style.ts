@@ -88,3 +88,23 @@ export const HeaderProfileDropdownButtnSvgStyle = styled.svg`
   width: 1rem;
   height: 1rem;
 `
+
+export const HeaderDropdownStyle = styled.div`
+  position: absolute;
+  top: 3.5rem;
+  right: 1rem;
+  max-width: 15rem;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0.5rem 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.125s ease-in 0s;
+  transform: translateY(-1rem);
+  pointer-events: none;
+`
