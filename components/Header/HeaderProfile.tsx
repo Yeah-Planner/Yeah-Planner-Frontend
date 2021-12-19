@@ -4,6 +4,7 @@ import {
   HeaderProfileDropdownButtnSvgStyle,
   HeaderProfileImgStyle,
 } from './Header.style'
+import defaultImage from './profile.png'
 
 interface Props {}
 
@@ -11,8 +12,10 @@ const HeaderProfile: NextPage<Props> = () => {
   return (
     <HeaderProfileContainerStyle>
       <HeaderProfileImgStyle
-        src="https://media.vlpt.us/profiles/5tarlight/thumbnails/1553600129.869.png?w=120"
+        src={defaultImage}
         alt="profile"
+        width={45}
+        height={45}
       />
       <HeaderProfileDropdownButtnSvgStyle
         viewBox="0 0 24 24"

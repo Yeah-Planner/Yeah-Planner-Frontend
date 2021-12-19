@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styled from 'styled-components'
 
 export const HeaderStyle = styled.header`
@@ -65,7 +66,7 @@ export const HeaderProfileContainerStyle = styled.div`
   align-items: center;
 `
 
-export const HeaderProfileImgStyle = styled.img`
+export const HeaderProfileImgStyle = styled(Image)`
   display: block;
   height: 2.5rem;
   width: 2.5rem;
