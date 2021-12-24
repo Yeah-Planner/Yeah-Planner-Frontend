@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styled from 'styled-components'
 
 export const HeaderStyle = styled.header`
@@ -65,7 +66,7 @@ export const HeaderProfileContainerStyle = styled.div`
   align-items: center;
 `
 
-export const HeaderProfileImgStyle = styled.img`
+export const HeaderProfileImgStyle = styled(Image)`
   display: block;
   height: 2.5rem;
   width: 2.5rem;
@@ -86,4 +87,44 @@ export const HeaderProfileDropdownButtnSvgStyle = styled.svg`
   stroke-width: 0;
   width: 1rem;
   height: 1rem;
+`
+
+export const HeaderDropdownStyle = styled.div`
+  position: absolute;
+  top: 3.5rem;
+  right: 1rem;
+  max-width: 15rem;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.125s ease-in 0s;
+  transform: translateY(-1rem);
+`
+
+interface DropDownItemProps {
+  separator?: boolean
+}
+
+export const HeaderDropdownItemStyle = styled.div<DropDownItemProps>`
+  z-index: 1001;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  padding-left: 1rem;
+  line-height: 40px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  ${({ separator }) => separator && 'border-bottom: 1.5px solid #a5a5a5;'}
+
+  & + & {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  &:hover {
+    cursor: pointer;
+  }
 `

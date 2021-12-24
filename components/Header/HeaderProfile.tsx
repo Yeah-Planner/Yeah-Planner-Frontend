@@ -1,18 +1,29 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 import {
   HeaderProfileContainerStyle,
   HeaderProfileDropdownButtnSvgStyle,
   HeaderProfileImgStyle,
 } from './Header.style'
+import HeaderDropdown from './HeaderDropdown'
+import defaultImage from './profile.png'
 
 interface Props {}
 
 const HeaderProfile: NextPage<Props> = () => {
+  const [showDropdown, setShowDropdown] = useState(false)
+
   return (
-    <HeaderProfileContainerStyle>
+    <HeaderProfileContainerStyle onClick={() => setShowDropdown(!showDropdown)}>
+      <HeaderDropdown
+        show={showDropdown}
+        handleHide={() => setShowDropdown(false)}
+      />
       <HeaderProfileImgStyle
-        src="https://media.vlpt.us/profiles/5tarlight/thumbnails/1553600129.869.png?w=120"
+        src={defaultImage}
         alt="profile"
+        width={45}
+        height={45}
       />
       <HeaderProfileDropdownButtnSvgStyle
         viewBox="0 0 24 24"
