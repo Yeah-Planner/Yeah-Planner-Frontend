@@ -15,7 +15,10 @@ const HeaderProfile: NextPage<Props> = () => {
 
   return (
     <HeaderProfileContainerStyle onClick={() => setShowDropdown(!showDropdown)}>
-      <HeaderDropdown show={showDropdown} />
+      <HeaderDropdown
+        show={showDropdown}
+        handleHide={() => setShowDropdown(false)}
+      />
       <HeaderProfileImgStyle
         src={defaultImage}
         alt="profile"

@@ -6,13 +6,15 @@ import { HeaderDropdownItemStyle, HeaderDropdownStyle } from './Header.style'
 
 interface Props {
   show: boolean
+  handleHide(): void
 }
 
-const HeaderDropdown: NextPage<Props> = ({ show }) => {
+const HeaderDropdown: NextPage<Props> = ({ show, handleHide }) => {
   const router = useRouter()
   const handleClick = (to: string) => (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    // e.stopPropagation()
+    e.stopPropagation()
+    handleHide()
     router.push(to)
   }
 
