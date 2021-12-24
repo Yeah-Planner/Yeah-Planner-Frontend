@@ -90,12 +90,12 @@ export const AuthButtonStyle = styled.button`
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   cursor: pointer;
-  background: rgb(18, 184, 134);
+  background: #4287f5;
   color: white;
   font-weight: bold;
 
   &:hover {
-    background: rgb(33, 194, 145);
+    background: #4d91ff;
   }
 `
 
@@ -123,7 +123,7 @@ export const NotHaveAccountStyle = styled.span`
 
 export const ToggleModeLinkStyle = styled.div`
   cursor: pointer;
-  color: rgb(18, 184, 134);
+  color: #4287f5;
   font-weight: bold;
   display: inline;
 
