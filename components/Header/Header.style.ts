@@ -91,8 +91,13 @@ export const HeaderProfileDropdownButtnSvgStyle = styled.svg`
 
 export const HeaderDropdownStyle = styled.div`
   position: absolute;
-  top: 3.5rem;
-  right: 1rem;
+  top: 4rem;
+
+  left: calc(100% - 2rem - 15rem);
+  @media (min-width: 1200px) {
+    left: calc(50% + 600px - 15rem);
+  }
+
   max-width: 15rem;
   width: 100%;
   background-color: #fff;
@@ -101,8 +106,6 @@ export const HeaderDropdownStyle = styled.div`
   z-index: 1000;
   justify-content: center;
   align-items: center;
-  transition: all 0.125s ease-in 0s;
-  transform: translateY(-1rem);
 `
 
 interface DropDownItemProps {
