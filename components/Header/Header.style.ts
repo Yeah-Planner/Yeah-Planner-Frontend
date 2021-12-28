@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const HeaderStyle = styled.header`
   width: 100%;
@@ -89,6 +89,21 @@ export const HeaderProfileDropdownButtnSvgStyle = styled.svg`
   height: 1rem;
 `
 
+const showAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(1, 0)
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1, 0.9)
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+`
+
 export const HeaderDropdownStyle = styled.div`
   position: absolute;
   top: 4rem;
@@ -106,6 +121,8 @@ export const HeaderDropdownStyle = styled.div`
   z-index: 1000;
   justify-content: center;
   align-items: center;
+  transform-origin: 100% 0;
+  animation: 0.2s ease-in-out 0s 1 normal forwards running ${showAnimation};
 `
 
 interface DropDownItemProps {
