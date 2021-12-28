@@ -26,10 +26,14 @@ const HeaderDropdown: NextPage<Props> = ({ show, handleHide }) => {
     <>
       <HeaderDropdownStyle>
         <HeaderDropdownItemStyle
-          // separator
+          separator
           onClick={handleClick(`/user/${getUser()?.uuid}`)}
         >
           내 프로필
+        </HeaderDropdownItemStyle>
+        <HeaderDropdownItemStyle>내 할 일 목록</HeaderDropdownItemStyle>
+        <HeaderDropdownItemStyle separator>
+          내 스터디 플래너
         </HeaderDropdownItemStyle>
         <HeaderDropdownItemStyle onClick={handleClick(`/logout`)}>
           로그아웃

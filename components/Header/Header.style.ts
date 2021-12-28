@@ -94,7 +94,7 @@ const dropdownShowAnimation = keyframes`
     opacity: 0;
     transform: scale(1, 0)
   }
-  75% {
+  50% {
     opacity: 1;
     transform: scale(1, 0.9)
   }
