@@ -89,7 +89,7 @@ export const HeaderProfileDropdownButtnSvgStyle = styled.svg`
   height: 1rem;
 `
 
-const showAnimation = keyframes`
+const dropdownShowAnimation = keyframes`
   0% {
     opacity: 0;
     transform: scale(1, 0)
@@ -117,12 +117,13 @@ export const HeaderDropdownStyle = styled.div`
   width: 100%;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 0.5rem 0.5rem;
+  border-radius: 0.5rem;
   z-index: 1000;
   justify-content: center;
   align-items: center;
   transform-origin: 100% 0;
-  animation: 0.2s ease-in-out 0s 1 normal forwards running ${showAnimation};
+  animation: 0.2s ease-in-out 0s 1 normal forwards running
+    ${dropdownShowAnimation};
 `
 
 interface DropDownItemProps {
@@ -147,4 +148,26 @@ export const HeaderDropdownItemStyle = styled.div<DropDownItemProps>`
   &:hover {
     cursor: pointer;
   }
+`
+
+const backgroundShowAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+export const DropdownBackgroundStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  cursor: default;
+  animation: 0.2s ease-in-out 0s 1 normal forwards running
+    ${backgroundShowAnimation};
 `
