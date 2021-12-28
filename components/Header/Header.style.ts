@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const HeaderStyle = styled.header`
   width: 100%;
@@ -89,20 +89,41 @@ export const HeaderProfileDropdownButtnSvgStyle = styled.svg`
   height: 1rem;
 `
 
+const dropdownShowAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(1, 0)
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1, 0.9)
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+`
+
 export const HeaderDropdownStyle = styled.div`
   position: absolute;
-  top: 3.5rem;
-  right: 1rem;
+  top: 4rem;
+
+  left: calc(100% - 2rem - 15rem);
+  @media (min-width: 1200px) {
+    left: calc(50% + 600px - 15rem);
+  }
+
   max-width: 15rem;
   width: 100%;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 0.5rem 0.5rem;
+  border-radius: 0.5rem;
   z-index: 1000;
   justify-content: center;
   align-items: center;
-  transition: all 0.125s ease-in 0s;
-  transform: translateY(-1rem);
+  transform-origin: 100% 0;
+  animation: 0.2s ease-in-out 0s 1 normal forwards running
+    ${dropdownShowAnimation};
 `
 
 interface DropDownItemProps {
@@ -110,7 +131,6 @@ interface DropDownItemProps {
 }
 
 export const HeaderDropdownItemStyle = styled.div<DropDownItemProps>`
-  z-index: 1001;
   cursor: pointer;
   width: 100%;
   height: 40px;
@@ -118,13 +138,42 @@ export const HeaderDropdownItemStyle = styled.div<DropDownItemProps>`
   line-height: 40px;
   overflow: hidden;
   box-sizing: border-box;
+  border: none;
 
   ${({ separator }) => separator && 'border-bottom: 1.5px solid #a5a5a5;'}
 
-  & + & {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
   &:hover {
-    cursor: pointer;
+    background-color: #f5f5f5;
   }
+
+  &:first-child {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  &:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+`
+
+const backgroundShowAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+export const DropdownBackgroundStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  cursor: default;
+  animation: 0.2s ease-in-out 0s 1 normal forwards running
+    ${backgroundShowAnimation};
 `
