@@ -131,7 +131,6 @@ interface DropDownItemProps {
 }
 
 export const HeaderDropdownItemStyle = styled.div<DropDownItemProps>`
-  z-index: 1001;
   cursor: pointer;
   width: 100%;
   height: 40px;
@@ -139,14 +138,21 @@ export const HeaderDropdownItemStyle = styled.div<DropDownItemProps>`
   line-height: 40px;
   overflow: hidden;
   box-sizing: border-box;
+  border: none;
 
   ${({ separator }) => separator && 'border-bottom: 1.5px solid #a5a5a5;'}
 
-  & + & {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
   &:hover {
-    cursor: pointer;
+    background-color: #f5f5f5;
+  }
+
+  &:first-child {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  &:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
 `
 

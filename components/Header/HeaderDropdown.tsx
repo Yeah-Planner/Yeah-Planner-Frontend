@@ -26,7 +26,7 @@ const HeaderDropdown: NextPage<Props> = ({ show, handleHide }) => {
     <>
       <HeaderDropdownStyle>
         <HeaderDropdownItemStyle
-          separator
+          // separator
           onClick={handleClick(`/user/${getUser()?.uuid}`)}
         >
           내 프로필
