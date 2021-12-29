@@ -53,3 +53,43 @@ export const TodoItemStyle = styled.div`
     border-bottom-right-radius: 0.5rem;
   }
 `
+
+export const TodoAddFormStyle = styled.form`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  margin-bottom: 2rem;
+`
+
+export const TodoAddFormInputStyle = styled.input`
+  width: 90%;
+  height: 4rem;
+  padding: 1rem;
+  border: none;
+  /* border-bottom: 3px solid #ccc; */
+  font-size: 1.25rem;
+  font-weight: 600;
+  box-sizing: border-box;
+  margin-right: 1rem;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export const TodoAddFormButtonStyle = styled.button`
+  height: 4rem;
+  width: 10%;
+  font-size: 1rem;
+  border: 1px solid rgb(222, 226, 230);
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  cursor: pointer;
+  background: #afc8f0;
+  font-weight: bold;
+
+  &:hover {
+    background: #b5caec;
+  }
+`
