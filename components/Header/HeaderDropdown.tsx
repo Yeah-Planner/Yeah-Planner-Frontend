@@ -31,7 +31,9 @@ const HeaderDropdown: NextPage<Props> = ({ show, handleHide }) => {
         >
           내 프로필
         </HeaderDropdownItemStyle>
-        <HeaderDropdownItemStyle>내 할 일 목록</HeaderDropdownItemStyle>
+        <HeaderDropdownItemStyle onClick={handleClick('/todo')}>
+          내 할 일 목록
+        </HeaderDropdownItemStyle>
         <HeaderDropdownItemStyle separator>
           내 스터디 플래너
         </HeaderDropdownItemStyle>
