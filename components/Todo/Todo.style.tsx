@@ -30,16 +30,15 @@ export const TodoItemContainerStyle = styled.div`
 `
 
 export const TodoItemStyle = styled.div`
-  height: 4rem;
+  height: 2.5rem;
   line-height: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   box-sizing: border-box;
-  font-weight: 600;
 
   &:hover {
     background-color: #f5f5f5;
@@ -92,4 +91,22 @@ export const TodoAddFormButtonStyle = styled.button`
   &:hover {
     background: #b5caec;
   }
+`
+
+export const OnTagStyle = styled.span`
+  background-color: #abff95;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  padding: 0.2rem;
+  box-sizing: border-box;
+  margin-right: 0.5rem;
+`
+
+export const CompletedTagStyle = styled.span`
+  background-color: #f78e8e;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+  padding: 0.2rem;
+  box-sizing: border-box;
+  margin-right: 0.5rem;
 `
