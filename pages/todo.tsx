@@ -18,6 +18,36 @@ const TodoPage: NextPage<{}> = () => {
       completed: false,
       description: '설명',
     },
+    {
+      id: createHash('sha256').update(new Date().toString()).digest('hex'),
+      title: '어쩌구',
+      completed: false,
+      description: '설명',
+    },
+    {
+      id: createHash('sha256').update(new Date().toString()).digest('hex'),
+      title: '어쩌구',
+      completed: false,
+      description: '설명',
+    },
+    {
+      id: createHash('sha256').update(new Date().toString()).digest('hex'),
+      title: '어쩌구',
+      completed: false,
+      description: '설명',
+    },
+    {
+      id: createHash('sha256').update(new Date().toString()).digest('hex'),
+      title: '어쩌구',
+      completed: false,
+      description: '설명',
+    },
+    {
+      id: createHash('sha256').update(new Date().toString()).digest('hex'),
+      title: '어쩌구',
+      completed: false,
+      description: '설명',
+    },
   ]
 
   return <TodoContainer todo={tempTodo} />
