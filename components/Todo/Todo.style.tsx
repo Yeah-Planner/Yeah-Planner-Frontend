@@ -26,7 +26,7 @@ export const TodoItemContainerStyle = styled.div`
   /* border: 1px solid #ccc; */
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  min-height: 4rem;
+  min-height: 2.5rem;
 `
 
 export const TodoItemStyle = styled.div`
@@ -87,6 +87,7 @@ export const TodoAddFormButtonStyle = styled.button`
   cursor: pointer;
   background: #afc8f0;
   font-weight: bold;
+  min-width: 5rem;
 
   &:hover {
     background: #b5caec;
