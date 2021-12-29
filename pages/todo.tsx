@@ -1,5 +1,6 @@
 import { createHash } from 'crypto'
 import { NextPage } from 'next'
+import { useState } from 'react'
 import TodoContainer from '../components/Todo/TodoContainer'
 
 export interface TodoItem {
@@ -11,46 +12,18 @@ export interface TodoItem {
 }
 
 const TodoPage: NextPage<{}> = () => {
-  const tempTodo: TodoItem[] = [
-    {
-      id: createHash('sha256').update(new Date().toString()).digest('hex'),
-      title: '어쩌구',
-      completed: false,
-      description: '설명',
-    },
-    {
-      id: createHash('sha256').update(new Date().toString()).digest('hex'),
-      title: '어쩌구',
-      completed: false,
-      description: '설명',
-    },
-    {
-      id: createHash('sha256').update(new Date().toString()).digest('hex'),
-      title: '어쩌구',
-      completed: false,
-      description: '설명',
-    },
-    {
-      id: createHash('sha256').update(new Date().toString()).digest('hex'),
-      title: '어쩌구',
-      completed: false,
-      description: '설명',
-    },
-    {
-      id: createHash('sha256').update(new Date().toString()).digest('hex'),
-      title: '어쩌구',
-      completed: false,
-      description: '설명',
-    },
-    {
-      id: createHash('sha256').update(new Date().toString()).digest('hex'),
-      title: '어쩌구',
-      completed: false,
-      description: '설명',
-    },
-  ]
+  const [todo, setTodo] = useState<TodoItem[]>([])
 
-  return <TodoContainer todo={tempTodo} />
+  const addTodo = (title: string) => {
+    if (!title.trim()) return
+
+    const id = createHash('sha256')
+      .update(title + Date.now())
+      .digest('hex')
+    setTodo([...todo, { id, title, completed: false, description: '' }])
+  }
+
+  return <TodoContainer todo={todo} addTodo={addTodo} />
 }
 
 export default TodoPage

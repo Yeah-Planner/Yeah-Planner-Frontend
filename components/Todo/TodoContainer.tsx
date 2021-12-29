@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 import { TodoItem } from '../../pages/todo'
 import {
   TodoAddFormButtonStyle,
@@ -12,15 +13,39 @@ import TodoItemComponent from './TodoItem'
 
 interface Props {
   todo: TodoItem[]
+  addTodo(title: string): void
 }
 
-const TodoContainer: NextPage<Props> = ({ todo }) => {
+const TodoContainer: NextPage<Props> = ({ todo, addTodo }) => {
+  const [input, setInput] = useState('')
+
   return (
     <TodoContainerStyle>
       <TodoPageTitleStyle>할 일 목록</TodoPageTitleStyle>
       <TodoAddFormStyle>
-        <TodoAddFormInputStyle placeholder="할 일 추가하기" />
-        <TodoAddFormButtonStyle>추가</TodoAddFormButtonStyle>
+        <TodoAddFormInputStyle
+          placeholder="할 일 추가하기"
+          value={input}
+          onChange={({ target: { value } }) => {
+            setInput(value)
+          }}
+          onKeyDown={({ key }) => {
+            if (key === 'Enter') {
+              addTodo(input)
+              setInput('')
+            }
+          }}
+        />
+        <TodoAddFormButtonStyle
+          onClick={e => {
+            e.preventDefault()
+            e.stopPropagation()
+            addTodo(input)
+            setInput('')
+          }}
+        >
+          추가
+        </TodoAddFormButtonStyle>
       </TodoAddFormStyle>
       <TodoItemContainerStyle>
         {todo.map(item => (
