@@ -14,9 +14,16 @@ import TodoItemComponent from './TodoItem'
 interface Props {
   todo: TodoItem[]
   addTodo(title: string): void
+  removeTodo(id: string): void
+  toggleTodo(id: string): void
 }
 
-const TodoContainer: NextPage<Props> = ({ todo, addTodo }) => {
+const TodoContainer: NextPage<Props> = ({
+  todo,
+  addTodo,
+  removeTodo,
+  toggleTodo,
+}) => {
   const [input, setInput] = useState('')
 
   return (
@@ -49,7 +56,12 @@ const TodoContainer: NextPage<Props> = ({ todo, addTodo }) => {
       </TodoAddFormStyle>
       <TodoItemContainerStyle>
         {todo.map(item => (
-          <TodoItemComponent key={item.id} item={item} />
+          <TodoItemComponent
+            key={item.id}
+            item={item}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+          />
         ))}
       </TodoItemContainerStyle>
     </TodoContainerStyle>

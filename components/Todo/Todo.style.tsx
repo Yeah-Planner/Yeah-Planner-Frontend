@@ -98,16 +98,43 @@ export const OnTagStyle = styled.span`
   background-color: #abff95;
   height: 2.5rem;
   border-radius: 2.5rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   box-sizing: border-box;
   margin-right: 0.5rem;
 `
 
 export const CompletedTagStyle = styled.span`
-  background-color: #f78e8e;
+  background-color: #dc143c;
   height: 2.5rem;
   border-radius: 2.5rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   box-sizing: border-box;
   margin-right: 0.5rem;
+`
+
+export const TodoRemoveStyle = styled.span`
+  cursor: pointer;
+  font-size: 1rem;
+  color: #727070;
+
+  &:hover {
+    color: #000;
+  }
+`
+
+export const TodoTitleStyle = styled.span<{ done: boolean }>`
+  font-size: 1.1rem;
+
+  ${({ done }) =>
+    done &&
+    `
+      text-decoration: line-through;
+      color: #6b6b6b;
+      font-style: italic;
+    `}
+`
+
+export const TodoToggleStyle = styled.input`
+  margin-right: 0.5rem;
+  width: 0.9rem;
 `

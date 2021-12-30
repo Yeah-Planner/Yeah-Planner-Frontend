@@ -1,13 +1,25 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 import { TodoItem } from '../../pages/todo'
-import { CompletedTagStyle, OnTagStyle, TodoItemStyle } from './Todo.style'
+import {
+  CompletedTagStyle,
+  OnTagStyle,
+  TodoRemoveStyle,
+  TodoItemStyle,
+  TodoTitleStyle,
+  TodoToggleStyle,
+} from './Todo.style'
 
 interface Props {
   item: TodoItem
+  removeTodo(id: string): void
+  toggleTodo(id: string): void
 }
 
 const TodoItemComponent: NextPage<Props> = ({
   item: { id, title, completed, description, deadline },
+  removeTodo,
+  toggleTodo,
 }) => {
   return (
     <TodoItemStyle>
@@ -17,9 +29,29 @@ const TodoItemComponent: NextPage<Props> = ({
         ) : (
           <OnTagStyle>진행 중</OnTagStyle>
         )}
-        {title}
+        <TodoTitleStyle done={completed}>{title}</TodoTitleStyle>
       </div>
-      <div>수정 삭제</div>
+      <div>
+        <TodoToggleStyle
+          type="checkbox"
+          defaultChecked={completed}
+          // readOnly
+          onClick={e => {
+            e.stopPropagation()
+            // e.preventDefault()
+            toggleTodo(id)
+          }}
+        />
+        <TodoRemoveStyle
+          onClick={e => {
+            e.stopPropagation()
+            e.preventDefault()
+            removeTodo(id)
+          }}
+        >
+          삭제
+        </TodoRemoveStyle>
+      </div>
     </TodoItemStyle>
   )
 }
