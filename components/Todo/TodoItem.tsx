@@ -45,8 +45,8 @@ const TodoItemComponent: NextPage<Props> = ({
         <div>
           <TodoToggleStyle
             type="checkbox"
-            defaultChecked={completed}
-            // readOnly
+            readOnly
+            checked={completed}
             onClick={e => {
               e.stopPropagation()
               // e.preventDefault()
@@ -64,7 +64,12 @@ const TodoItemComponent: NextPage<Props> = ({
           </TodoRemoveStyle>
         </div>
       </TodoItemStyle>
-      <TodoPopup item={item} show={show} close={() => setShow(false)} />
+      <TodoPopup
+        item={item}
+        show={show}
+        close={() => setShow(false)}
+        toggleTodo={toggleTodo}
+      />
     </>
   )
 }

@@ -156,10 +156,41 @@ export const TodoPopupStyle = styled.div`
   min-width: 350px;
   width: calc(100% - 4rem);
   min-height: 500px;
+  height: calc(100% - 10rem);
   z-index: 100;
   background-color: white;
   top: 5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   left: 50%;
   transform: translate(-50%, 0);
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+`
+
+export const TodoExitContainerStyle = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`
+
+export const TodoExitSvgStyle = styled.svg`
+  cursor: pointer;
+  stroke: currentColor;
+  fill: currentColor;
+  stroke-width: 0;
+  height: 1em;
+  width: 1em;
+`
+
+export const TodoPopupTitleStyle = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
+`
+
+export const CompletePopupTagStyle = styled(CompletedTagStyle)`
+  cursor: pointer;
+`
+
+export const OnPopupTagStyle = styled(OnTagStyle)`
+  cursor: pointer;
 `
