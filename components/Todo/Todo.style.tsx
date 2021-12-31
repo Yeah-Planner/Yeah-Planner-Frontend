@@ -176,7 +176,8 @@ export const TodoPopupBackgroundStyle = styled.div`
 
 export const TodoPopupStyle = styled.div`
   position: fixed;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-width: 1200px;
   min-width: 350px;
   width: calc(100% - 4rem);
@@ -208,8 +209,10 @@ export const TodoExitSvgStyle = styled.svg`
 `
 
 export const TodoPopupTitleStyle = styled.h2`
+  word-break: break-all;
   font-size: 2rem;
   font-weight: bold;
+  width: 100%;
 `
 
 export const CompletePopupTagStyle = styled(CompletedTagStyle)`
