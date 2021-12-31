@@ -138,3 +138,28 @@ export const TodoToggleStyle = styled.input`
   margin-right: 0.5rem;
   width: 0.9rem;
 `
+
+export const TodoPopupBackgroundStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+`
+
+export const TodoPopupStyle = styled.div`
+  position: fixed;
+  overflow: scroll;
+  max-width: 1200px;
+  min-width: 350px;
+  width: calc(100% - 4rem);
+  min-height: 500px;
+  z-index: 100;
+  background-color: white;
+  top: 5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translate(-50%, 0);
+`

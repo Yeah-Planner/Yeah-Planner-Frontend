@@ -9,6 +9,7 @@ import {
   TodoTitleStyle,
   TodoToggleStyle,
 } from './Todo.style'
+import TodoPopup from './TodoPopup'
 
 interface Props {
   item: TodoItem
@@ -17,42 +18,54 @@ interface Props {
 }
 
 const TodoItemComponent: NextPage<Props> = ({
+  item,
   item: { id, title, completed, description, deadline },
   removeTodo,
   toggleTodo,
 }) => {
+  const [show, setShow] = useState(false)
+
   return (
-    <TodoItemStyle>
-      <div>
-        {completed ? (
-          <CompletedTagStyle>완료</CompletedTagStyle>
-        ) : (
-          <OnTagStyle>진행 중</OnTagStyle>
-        )}
-        <TodoTitleStyle done={completed}>{title}</TodoTitleStyle>
-      </div>
-      <div>
-        <TodoToggleStyle
-          type="checkbox"
-          defaultChecked={completed}
-          // readOnly
-          onClick={e => {
-            e.stopPropagation()
-            // e.preventDefault()
-            toggleTodo(id)
-          }}
-        />
-        <TodoRemoveStyle
-          onClick={e => {
-            e.stopPropagation()
-            e.preventDefault()
-            removeTodo(id)
-          }}
-        >
-          삭제
-        </TodoRemoveStyle>
-      </div>
-    </TodoItemStyle>
+    <>
+      <TodoItemStyle
+        onClick={e => {
+          e.stopPropagation()
+          e.preventDefault()
+          setShow(true)
+        }}
+      >
+        <div>
+          {completed ? (
+            <CompletedTagStyle>완료</CompletedTagStyle>
+          ) : (
+            <OnTagStyle>진행 중</OnTagStyle>
+          )}
+          <TodoTitleStyle done={completed}>{title}</TodoTitleStyle>
+        </div>
+        <div>
+          <TodoToggleStyle
+            type="checkbox"
+            defaultChecked={completed}
+            // readOnly
+            onClick={e => {
+              e.stopPropagation()
+              // e.preventDefault()
+              toggleTodo(id)
+            }}
+          />
+          <TodoRemoveStyle
+            onClick={e => {
+              e.stopPropagation()
+              e.preventDefault()
+              removeTodo(id)
+            }}
+          >
+            삭제
+          </TodoRemoveStyle>
+        </div>
+      </TodoItemStyle>
+      <TodoPopup item={item} show={show} close={() => setShow(false)} />
+    </>
   )
 }
 
