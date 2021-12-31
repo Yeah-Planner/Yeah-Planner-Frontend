@@ -96,20 +96,32 @@ export const TodoAddFormButtonStyle = styled.button`
 
 export const OnTagStyle = styled.span`
   background-color: #abff95;
-  height: 2.5rem;
+  display: block;
+  width: 80px;
+  box-sizing: border-box;
+  height: 2rem;
   border-radius: 2.5rem;
   padding: 0.2rem 0.5rem;
-  box-sizing: border-box;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.8rem;
+  overflow: hidden;
 `
 
 export const CompletedTagStyle = styled.span`
   background-color: #dc143c;
-  height: 2.5rem;
+  display: block;
+  width: 80px;
+  box-sizing: border-box;
+  height: 2rem;
   border-radius: 2.5rem;
   padding: 0.2rem 0.5rem;
-  box-sizing: border-box;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.8rem;
+  overflow: hidden;
 `
 
 export const TodoRemoveStyle = styled.span`
@@ -123,7 +135,11 @@ export const TodoRemoveStyle = styled.span`
 `
 
 export const TodoTitleStyle = styled.span<{ done: boolean }>`
+  display: block;
   font-size: 1.1rem;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   ${({ done }) =>
     done &&
@@ -132,6 +148,15 @@ export const TodoTitleStyle = styled.span<{ done: boolean }>`
       color: #6b6b6b;
       font-style: italic;
     `}
+`
+
+export const TodoTitleContainerStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  align-items: center;
 `
 
 export const TodoToggleStyle = styled.input`
@@ -151,7 +176,7 @@ export const TodoPopupBackgroundStyle = styled.div`
 
 export const TodoPopupStyle = styled.div`
   position: fixed;
-  overflow: scroll;
+  overflow: auto;
   max-width: 1200px;
   min-width: 350px;
   width: calc(100% - 4rem);

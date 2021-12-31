@@ -8,6 +8,7 @@ import {
   TodoItemStyle,
   TodoTitleStyle,
   TodoToggleStyle,
+  TodoTitleContainerStyle,
 } from './Todo.style'
 import TodoPopup from './TodoPopup'
 
@@ -34,14 +35,14 @@ const TodoItemComponent: NextPage<Props> = ({
           setShow(true)
         }}
       >
-        <div>
+        <TodoTitleContainerStyle>
           {completed ? (
             <CompletedTagStyle>완료</CompletedTagStyle>
           ) : (
             <OnTagStyle>진행 중</OnTagStyle>
           )}
           <TodoTitleStyle done={completed}>{title}</TodoTitleStyle>
-        </div>
+        </TodoTitleContainerStyle>
         <div>
           <TodoToggleStyle
             type="checkbox"
