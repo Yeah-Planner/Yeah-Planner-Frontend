@@ -19,6 +19,7 @@ interface Props {
   item: TodoItem
   close(): void
   toggleTodo(id: string): void
+  editTitle(id: string, title: string): void
 }
 
 const TodoPopup: NextPage<Props> = ({
@@ -26,6 +27,7 @@ const TodoPopup: NextPage<Props> = ({
   item: { id, title, completed, description, deadline },
   close,
   toggleTodo,
+  editTitle,
 }) => {
   const [titleValue, setTitleValue] = useState(title)
 
@@ -56,6 +58,9 @@ const TodoPopup: NextPage<Props> = ({
           value={titleValue}
           onChange={e => {
             setTitleValue(e.target.value)
+          }}
+          onBlur={e => {
+            editTitle(id, titleValue)
           }}
         />
         {completed ? (

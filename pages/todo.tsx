@@ -36,6 +36,16 @@ const TodoPage: NextPage<{}> = () => {
       })
     )
   }
+  const editTitle = (id: string, title: string) => {
+    setTodo(
+      todo.map(item => {
+        if (item.id === id) {
+          return { ...item, title }
+        }
+        return item
+      })
+    )
+  }
 
   return (
     <TodoContainer
@@ -43,6 +53,7 @@ const TodoPage: NextPage<{}> = () => {
       addTodo={addTodo}
       removeTodo={removeTodo}
       toggleTodo={toggleTodo}
+      editTitle={editTitle}
     />
   )
 }
