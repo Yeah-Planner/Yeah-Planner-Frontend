@@ -140,6 +140,7 @@ export const TodoTitleStyle = styled.span<{ done: boolean }>`
   width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 
   ${({ done }) =>
     done &&
@@ -208,11 +209,17 @@ export const TodoExitSvgStyle = styled.svg`
   width: 1em;
 `
 
-export const TodoPopupTitleStyle = styled.h2`
+export const TodoPopupTitleStyle = styled.input`
   word-break: break-all;
   font-size: 2rem;
   font-weight: bold;
-  width: 100%;
+  width: 95%;
+  border: none;
+  margin-bottom: 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
 `
 
 export const CompletePopupTagStyle = styled(CompletedTagStyle)`
@@ -221,4 +228,26 @@ export const CompletePopupTagStyle = styled(CompletedTagStyle)`
 
 export const OnPopupTagStyle = styled(OnTagStyle)`
   cursor: pointer;
+`
+
+export const TodoPopupDeadlineStyle = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2rem;
+`
+
+export const TodoPopupDeadlineTitleStyle = styled.div`
+  margin-right: 1rem;
+  border: none;
+  font-size: 1.25rem;
+`
+
+export const TodoPopupDeadlineInputStyle = styled.input`
+  width: 90%;
+  border: none;
+  font-size: 1.25rem;
+
+  &:focus {
+    outline: none;
+  }
 `

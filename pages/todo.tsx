@@ -9,7 +9,7 @@ export interface TodoItem {
   title: string
   completed: boolean
   description: string
-  deadline?: Date
+  deadline?: string
 }
 
 const TodoPage: NextPage<{}> = () => {

@@ -36,7 +36,7 @@ const TodoContainer: NextPage<Props> = ({
           onChange={({ target: { value } }) => {
             setInput(value)
           }}
-          onKeyDown={({ key }) => {
+          onKeyPress={({ key }) => {
             if (key === 'Enter') {
               addTodo(input)
               setInput('')
