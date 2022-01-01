@@ -20,16 +20,21 @@ interface Props {
   close(): void
   toggleTodo(id: string): void
   editTitle(id: string, title: string): void
+  editDeadline(id: string, deadline: string): void
+  editContent(id: string, content: string): void
 }
 
 const TodoPopup: NextPage<Props> = ({
   show,
-  item: { id, title, completed, description, deadline },
+  item: { id, title, completed, content: description, deadline },
   close,
   toggleTodo,
   editTitle,
+  editDeadline,
+  editContent,
 }) => {
   const [titleValue, setTitleValue] = useState(title)
+  const [deadlineValue, setDeadlineValue] = useState(deadline)
 
   return show ? (
     <>
@@ -60,7 +65,8 @@ const TodoPopup: NextPage<Props> = ({
             setTitleValue(e.target.value)
           }}
           onBlur={e => {
-            editTitle(id, titleValue)
+            if (!titleValue) setTitleValue('제목 없음')
+            editTitle(id, titleValue || '제목 없음')
           }}
         />
         {completed ? (
@@ -86,7 +92,16 @@ const TodoPopup: NextPage<Props> = ({
         )}
         <TodoPopupDeadlineStyle>
           <TodoPopupDeadlineTitleStyle>기한</TodoPopupDeadlineTitleStyle>
-          <TodoPopupDeadlineInputStyle placeholder="기한이 지정되지 않았습니다." />
+          <TodoPopupDeadlineInputStyle
+            value={deadlineValue}
+            onChange={e => {
+              setDeadlineValue(e.target.value)
+            }}
+            onBlur={e => {
+              editDeadline(id, deadlineValue)
+            }}
+            placeholder="기한이 지정되지 않았습니다."
+          />
         </TodoPopupDeadlineStyle>
       </TodoPopupStyle>
     </>

@@ -17,6 +17,8 @@ interface Props {
   removeTodo(id: string): void
   toggleTodo(id: string): void
   editTitle(id: string, title: string): void
+  editDeadline(id: string, deadline: string): void
+  editContent(id: string, content: string): void
 }
 
 const TodoContainer: NextPage<Props> = ({
@@ -25,6 +27,8 @@ const TodoContainer: NextPage<Props> = ({
   removeTodo,
   toggleTodo,
   editTitle,
+  editDeadline,
+  editContent,
 }) => {
   const [input, setInput] = useState('')
 
@@ -64,6 +68,8 @@ const TodoContainer: NextPage<Props> = ({
             removeTodo={removeTodo}
             toggleTodo={toggleTodo}
             editTitle={editTitle}
+            editDeadline={editDeadline}
+            editContent={editContent}
           />
         ))}
       </TodoItemContainerStyle>

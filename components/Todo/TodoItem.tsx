@@ -17,14 +17,18 @@ interface Props {
   removeTodo(id: string): void
   toggleTodo(id: string): void
   editTitle(id: string, title: string): void
+  editDeadline(id: string, deadline: string): void
+  editContent(id: string, content: string): void
 }
 
 const TodoItemComponent: NextPage<Props> = ({
   item,
-  item: { id, title, completed, description, deadline },
+  item: { id, title, completed, content, deadline },
   removeTodo,
   toggleTodo,
   editTitle,
+  editDeadline,
+  editContent,
 }) => {
   const [show, setShow] = useState(false)
 
@@ -73,6 +77,8 @@ const TodoItemComponent: NextPage<Props> = ({
         close={() => setShow(false)}
         toggleTodo={toggleTodo}
         editTitle={editTitle}
+        editContent={editContent}
+        editDeadline={editDeadline}
       />
     </>
   )

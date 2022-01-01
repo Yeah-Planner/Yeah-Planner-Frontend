@@ -8,8 +8,8 @@ export interface TodoItem {
   id: string
   title: string
   completed: boolean
-  description: string
-  deadline?: string
+  content: string
+  deadline: string
 }
 
 const TodoPage: NextPage<{}> = () => {
@@ -21,7 +21,10 @@ const TodoPage: NextPage<{}> = () => {
     const id = createHash('sha256')
       .update(title + Date.now() + getUser()?.uuid)
       .digest('hex')
-    setTodo([...todo, { id, title, completed: false, description: '' }])
+    setTodo([
+      ...todo,
+      { id, title, completed: false, content: '', deadline: '' },
+    ])
   }
   const removeTodo = (id: string) => {
     setTodo(todo.filter(item => item.id !== id))
@@ -46,6 +49,26 @@ const TodoPage: NextPage<{}> = () => {
       })
     )
   }
+  const editDeadline = (id: string, deadline: string) => {
+    setTodo(
+      todo.map(item => {
+        if (item.id === id) {
+          return { ...item, deadline }
+        }
+        return item
+      })
+    )
+  }
+  const editContent = (id: string, content: string) => {
+    setTodo(
+      todo.map(item => {
+        if (item.id === id) {
+          return { ...item, content }
+        }
+        return item
+      })
+    )
+  }
 
   return (
     <TodoContainer
@@ -54,6 +77,8 @@ const TodoPage: NextPage<{}> = () => {
       removeTodo={removeTodo}
       toggleTodo={toggleTodo}
       editTitle={editTitle}
+      editDeadline={editDeadline}
+      editContent={editContent}
     />
   )
 }

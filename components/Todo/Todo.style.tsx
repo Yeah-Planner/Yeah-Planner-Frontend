@@ -240,6 +240,8 @@ export const TodoPopupDeadlineTitleStyle = styled.div`
   margin-right: 1rem;
   border: none;
   font-size: 1.25rem;
+  width: 10%;
+  min-width: 2.5rem;
 `
 
 export const TodoPopupDeadlineInputStyle = styled.input`
