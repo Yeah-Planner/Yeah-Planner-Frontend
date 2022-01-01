@@ -253,3 +253,21 @@ export const TodoPopupDeadlineInputStyle = styled.input`
     outline: none;
   }
 `
+
+export const TodoPopupContentStyle = styled.textarea`
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: fit-content;
+  resize: none;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  overflow-y: hidden;
+  overflow-x: auto;
+  border: none;
+  margin-bottom: 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
+`

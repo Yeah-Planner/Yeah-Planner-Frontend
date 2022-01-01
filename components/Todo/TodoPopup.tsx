@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TodoItem } from '../../pages/todo'
 import {
   CompletePopupTagStyle,
@@ -7,6 +7,7 @@ import {
   TodoExitContainerStyle,
   TodoExitSvgStyle,
   TodoPopupBackgroundStyle,
+  TodoPopupContentStyle,
   TodoPopupDeadlineInputStyle,
   TodoPopupDeadlineStyle,
   TodoPopupDeadlineTitleStyle,
@@ -26,7 +27,7 @@ interface Props {
 
 const TodoPopup: NextPage<Props> = ({
   show,
-  item: { id, title, completed, content: description, deadline },
+  item: { id, title, completed, content, deadline },
   close,
   toggleTodo,
   editTitle,
@@ -35,6 +36,22 @@ const TodoPopup: NextPage<Props> = ({
 }) => {
   const [titleValue, setTitleValue] = useState(title)
   const [deadlineValue, setDeadlineValue] = useState(deadline)
+  const [contentValue, setContentValue] = useState(content)
+
+  const contentRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const cols = contentRef.current.cols
+      console.log(cols)
+
+      let line = 0
+      contentRef.current.value.split('\n').forEach(v => {
+        line += Math.floor(v.length / cols) + 1
+      })
+      contentRef.current.rows = Math.max(line, 10)
+    }
+  }, [content])
 
   return show ? (
     <>
@@ -103,6 +120,25 @@ const TodoPopup: NextPage<Props> = ({
             placeholder="기한이 지정되지 않았습니다."
           />
         </TodoPopupDeadlineStyle>
+        <TodoPopupContentStyle
+          // TODO: cols가 20으로 고정임. 화면 크기에 따라 변경해야 함.
+          placeholder="내용"
+          value={contentValue}
+          onChange={({ target }) => {
+            const cols = target.cols
+
+            let line = 0
+            target.value.split('\n').forEach(v => {
+              line += Math.floor(v.length / cols) + 1
+            })
+            target.rows = line
+            setContentValue(target.value)
+          }}
+          onBlur={e => {
+            editContent(id, contentValue)
+          }}
+          ref={contentRef}
+        />
       </TodoPopupStyle>
     </>
   ) : null
