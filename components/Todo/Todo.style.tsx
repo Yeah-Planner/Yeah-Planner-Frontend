@@ -96,20 +96,32 @@ export const TodoAddFormButtonStyle = styled.button`
 
 export const OnTagStyle = styled.span`
   background-color: #abff95;
-  height: 2.5rem;
+  display: block;
+  width: 80px;
+  box-sizing: border-box;
+  height: 2rem;
   border-radius: 2.5rem;
   padding: 0.2rem 0.5rem;
-  box-sizing: border-box;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.8rem;
+  overflow: hidden;
 `
 
 export const CompletedTagStyle = styled.span`
   background-color: #dc143c;
-  height: 2.5rem;
+  display: block;
+  width: 80px;
+  box-sizing: border-box;
+  height: 2rem;
   border-radius: 2.5rem;
   padding: 0.2rem 0.5rem;
-  box-sizing: border-box;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.8rem;
+  overflow: hidden;
 `
 
 export const TodoRemoveStyle = styled.span`
@@ -123,7 +135,12 @@ export const TodoRemoveStyle = styled.span`
 `
 
 export const TodoTitleStyle = styled.span<{ done: boolean }>`
+  display: block;
   font-size: 1.1rem;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   ${({ done }) =>
     done &&
@@ -134,7 +151,123 @@ export const TodoTitleStyle = styled.span<{ done: boolean }>`
     `}
 `
 
+export const TodoTitleContainerStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  align-items: center;
+`
+
 export const TodoToggleStyle = styled.input`
   margin-right: 0.5rem;
   width: 0.9rem;
+`
+
+export const TodoPopupBackgroundStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+`
+
+export const TodoPopupStyle = styled.div`
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-width: 1200px;
+  min-width: 350px;
+  width: calc(100% - 4rem);
+  min-height: 500px;
+  height: calc(100% - 10rem);
+  z-index: 100;
+  background-color: white;
+  top: 5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+`
+
+export const TodoExitContainerStyle = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`
+
+export const TodoExitSvgStyle = styled.svg`
+  cursor: pointer;
+  stroke: currentColor;
+  fill: currentColor;
+  stroke-width: 0;
+  height: 1em;
+  width: 1em;
+`
+
+export const TodoPopupTitleStyle = styled.input`
+  word-break: break-all;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 95%;
+  border: none;
+  margin-bottom: 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export const CompletePopupTagStyle = styled(CompletedTagStyle)`
+  cursor: pointer;
+`
+
+export const OnPopupTagStyle = styled(OnTagStyle)`
+  cursor: pointer;
+`
+
+export const TodoPopupDeadlineStyle = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2rem;
+`
+
+export const TodoPopupDeadlineTitleStyle = styled.div`
+  margin-right: 1rem;
+  border: none;
+  font-size: 1.25rem;
+  width: 10%;
+  min-width: 2.5rem;
+`
+
+export const TodoPopupDeadlineInputStyle = styled.input`
+  width: 90%;
+  border: none;
+  font-size: 1.25rem;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export const TodoPopupContentStyle = styled.textarea`
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: fit-content;
+  resize: none;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  overflow-y: hidden;
+  overflow-x: auto;
+  border: none;
+  margin-bottom: 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
 `

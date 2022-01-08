@@ -8,51 +8,81 @@ import {
   TodoItemStyle,
   TodoTitleStyle,
   TodoToggleStyle,
+  TodoTitleContainerStyle,
 } from './Todo.style'
+import TodoPopup from './TodoPopup'
 
 interface Props {
   item: TodoItem
   removeTodo(id: string): void
   toggleTodo(id: string): void
+  editTitle(id: string, title: string): void
+  editDeadline(id: string, deadline: string): void
+  editContent(id: string, content: string): void
 }
 
 const TodoItemComponent: NextPage<Props> = ({
-  item: { id, title, completed, description, deadline },
+  item,
+  item: { id, title, completed, content, deadline },
   removeTodo,
   toggleTodo,
+  editTitle,
+  editDeadline,
+  editContent,
 }) => {
+  const [show, setShow] = useState(false)
+
   return (
-    <TodoItemStyle>
-      <div>
-        {completed ? (
-          <CompletedTagStyle>완료</CompletedTagStyle>
-        ) : (
-          <OnTagStyle>진행 중</OnTagStyle>
-        )}
-        <TodoTitleStyle done={completed}>{title}</TodoTitleStyle>
-      </div>
-      <div>
-        <TodoToggleStyle
-          type="checkbox"
-          defaultChecked={completed}
-          // readOnly
-          onClick={e => {
-            e.stopPropagation()
-            // e.preventDefault()
-            toggleTodo(id)
-          }}
+    <>
+      <TodoItemStyle
+        onClick={e => {
+          e.stopPropagation()
+          e.preventDefault()
+          setShow(true)
+        }}
+      >
+        <TodoTitleContainerStyle>
+          {completed ? (
+            <CompletedTagStyle>완료</CompletedTagStyle>
+          ) : (
+            <OnTagStyle>진행 중</OnTagStyle>
+          )}
+          <TodoTitleStyle done={completed}>{title}</TodoTitleStyle>
+        </TodoTitleContainerStyle>
+        <div>
+          <TodoToggleStyle
+            type="checkbox"
+            readOnly
+            checked={completed}
+            onClick={e => {
+              e.stopPropagation()
+              // e.preventDefault()
+              toggleTodo(id)
+            }}
+          />
+          <TodoRemoveStyle
+            onClick={e => {
+              e.stopPropagation()
+              e.preventDefault()
+              removeTodo(id)
+            }}
+          >
+            삭제
+          </TodoRemoveStyle>
+        </div>
+      </TodoItemStyle>
+      {show && (
+        <TodoPopup
+          item={item}
+          show={show}
+          close={() => setShow(false)}
+          toggleTodo={toggleTodo}
+          editTitle={editTitle}
+          editContent={editContent}
+          editDeadline={editDeadline}
         />
-        <TodoRemoveStyle
-          onClick={e => {
-            e.stopPropagation()
-            e.preventDefault()
-            removeTodo(id)
-          }}
-        >
-          삭제
-        </TodoRemoveStyle>
-      </div>
-    </TodoItemStyle>
+      )}
+    </>
   )
 }
 
