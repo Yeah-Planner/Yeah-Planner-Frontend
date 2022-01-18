@@ -7,7 +7,9 @@ import {
   TodoExitContainerStyle,
   TodoExitSvgStyle,
   TodoPopupBackgroundStyle,
+  // TodoPopupContentSpanStyle,
   TodoPopupContentStyle,
+  // TodoPopupContentStyle,
   TodoPopupDeadlineInputStyle,
   TodoPopupDeadlineStyle,
   TodoPopupDeadlineTitleStyle,
@@ -120,7 +122,7 @@ const TodoPopup: NextPage<Props> = ({
             placeholder="기한이 지정되지 않았습니다."
           />
         </TodoPopupDeadlineStyle>
-        <TodoPopupContentStyle
+        {/* <TodoPopupContentStyle
           // TODO: cols가 20으로 고정임. 화면 크기에 따라 변경해야 함.
           placeholder="내용"
           value={contentValue}
@@ -138,6 +140,16 @@ const TodoPopup: NextPage<Props> = ({
             editContent(id, contentValue)
           }}
           ref={contentRef}
+        /> */}
+        <TodoPopupContentStyle
+          placeholder="내용"
+          value={contentValue}
+          onChange={({ target }) => {
+            setContentValue(target.value)
+          }}
+          onBlur={e => {
+            editContent(id, contentValue)
+          }}
         />
       </TodoPopupStyle>
     </>
