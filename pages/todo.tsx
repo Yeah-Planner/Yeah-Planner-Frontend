@@ -65,7 +65,31 @@ const TodoPage: NextPage = () => {
 
     setTodo(todo.filter(item => item.id !== id))
   }
+
+  const updateTodo = async (
+    id: string,
+    update: 'title' | 'content' | 'deadline' | 'completed',
+    value: string | boolean
+  ) => {
+    if (update === 'completed' && typeof value !== 'boolean') return
+    if (update !== 'completed' && typeof value === 'boolean') return
+
+    const user = getUser()
+    if (!user) return
+
+    await axios.post(`${backend()}/todo/update`, {
+      owner: user.uuid,
+      id,
+      data: {
+        update,
+        value,
+      },
+    })
+  }
+
   const toggleTodo = (id: string) => {
+    updateTodo(id, 'completed', !todo.find(item => item.id === id)?.completed)
+
     setTodo(
       todo.map(item => {
         if (item.id === id) {
@@ -76,6 +100,7 @@ const TodoPage: NextPage = () => {
     )
   }
   const editTitle = (id: string, title: string) => {
+    updateTodo(id, 'title', title)
     setTodo(
       todo.map(item => {
         if (item.id === id) {
@@ -86,6 +111,7 @@ const TodoPage: NextPage = () => {
     )
   }
   const editDeadline = (id: string, deadline: string) => {
+    updateTodo(id, 'deadline', deadline)
     setTodo(
       todo.map(item => {
         if (item.id === id) {
@@ -96,6 +122,7 @@ const TodoPage: NextPage = () => {
     )
   }
   const editContent = (id: string, content: string) => {
+    updateTodo(id, 'content', content)
     setTodo(
       todo.map(item => {
         if (item.id === id) {
