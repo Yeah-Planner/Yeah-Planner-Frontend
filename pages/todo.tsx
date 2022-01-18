@@ -30,10 +30,22 @@ const TodoPage: NextPage = () => {
 
   const addTodo = (title: string) => {
     if (!title.trim()) return
+    const user = getUser()
+    if (!user) return
 
     const id = createHash('sha256')
       .update(title + Date.now() + getUser()?.uuid)
       .digest('hex')
+
+    const f = async () => {
+      await axios.post<TodoItem>(`${backend()}/todo/create`, {
+        title,
+        id,
+        owner: user.uuid,
+      })
+    }
+    f()
+
     setTodo([
       ...todo,
       { id, title, completed: false, content: '', deadline: '' },
