@@ -9,7 +9,6 @@ import {
   TodoPopupBackgroundStyle,
   // TodoPopupContentSpanStyle,
   TodoPopupContentStyle,
-  // TodoPopupContentStyle,
   TodoPopupDeadlineInputStyle,
   TodoPopupDeadlineStyle,
   TodoPopupDeadlineTitleStyle,
@@ -142,6 +141,7 @@ const TodoPopup: NextPage<Props> = ({
           ref={contentRef}
         /> */}
         <TodoPopupContentStyle
+          maxLength={65535}
           placeholder="내용"
           value={contentValue}
           onChange={({ target }) => {
