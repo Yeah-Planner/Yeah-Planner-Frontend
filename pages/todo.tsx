@@ -52,6 +52,17 @@ const TodoPage: NextPage = () => {
     ])
   }
   const removeTodo = (id: string) => {
+    const user = getUser()
+    if (!user) return
+
+    const f = async () => {
+      await axios.post(`${backend()}/todo/delete`, {
+        id,
+        owner: user.uuid,
+      })
+    }
+    f()
+
     setTodo(todo.filter(item => item.id !== id))
   }
   const toggleTodo = (id: string) => {
