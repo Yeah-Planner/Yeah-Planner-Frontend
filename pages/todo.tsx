@@ -1,8 +1,10 @@
+import axios from 'axios'
 import { createHash } from 'crypto'
-import { NextPage } from 'next'
-import { useState } from 'react'
+import { GetServerSideProps, NextPage } from 'next'
+import { useEffect, useState } from 'react'
 import TodoContainer from '../components/Todo/TodoContainer'
 import { getUser } from '../storage/storage'
+import { backend } from '../util/util'
 
 export interface TodoItem {
   id: string
@@ -12,8 +14,19 @@ export interface TodoItem {
   deadline: string
 }
 
-const TodoPage: NextPage<{}> = () => {
+const TodoPage: NextPage = () => {
   const [todo, setTodo] = useState<TodoItem[]>([])
+
+  useEffect(() => {
+    ;(async () => {
+      const user = getUser()
+      if (!user) return
+      const { data } = await axios.post<TodoItem[]>(`${backend()}/todo/get`, {
+        owner: user.uuid,
+      })
+      setTodo(data)
+    })()
+  }, [])
 
   const addTodo = (title: string) => {
     if (!title.trim()) return
@@ -84,3 +97,18 @@ const TodoPage: NextPage<{}> = () => {
 }
 
 export default TodoPage
+
+// export const getServerSideProps: GetServerSideProps<Props> = async ctx => {
+//   const todoRes = await axios.post<TodoItem[]>(`${backend}/todo/get`, {
+//     // owner: getUser()?.uuid,
+//     owner: '123',
+//   })
+//   console.log(todoRes.status)
+//   // TODO: save session in cookie and return redirect if not logged in
+
+//   return {
+//     props: {
+//       todo: todoRes.data,
+//     },
+//   }
+// }
