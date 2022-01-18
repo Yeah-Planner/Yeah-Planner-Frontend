@@ -23,7 +23,7 @@ interface Props {
 
 const TodoItemComponent: NextPage<Props> = ({
   item,
-  item: { id, title, completed, content, deadline },
+  item: { id, title, completed },
   removeTodo,
   toggleTodo,
   editTitle,

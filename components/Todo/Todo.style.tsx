@@ -258,12 +258,11 @@ export const TodoPopupContentStyle = styled.textarea`
   width: 100%;
   min-width: 100%;
   max-width: 100%;
-  height: fit-content;
+  height: 70%;
   resize: none;
   margin-top: 2rem;
   font-size: 1.1rem;
-  overflow-y: hidden;
-  overflow-x: auto;
+  overflow: auto;
   border: none;
   margin-bottom: 0.5rem;
 
@@ -271,3 +270,10 @@ export const TodoPopupContentStyle = styled.textarea`
     outline: none;
   }
 `
+
+// export const TodoPopupContentSpanStyle = styled.input`
+//   margin-top: 2rem;
+//   display: block;
+//   width: 100%;
+//   word-break: break-word;
+// `
