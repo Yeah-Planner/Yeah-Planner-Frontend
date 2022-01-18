@@ -31,6 +31,9 @@ const GlobalStyle = createGlobalStyle`
       color: #000;
     }
   }
+  * {
+    box-sizing: border-box;
+  }
 `
 
 export default GlobalStyle
