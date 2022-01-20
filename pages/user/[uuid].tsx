@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import ProfileContent from '../../components/Profile/ProfileContent'
 import { backend } from '../../util/util'
+import { useRouter } from 'next/router'
 
 export interface UserRes {
   uuid: string
@@ -19,26 +20,31 @@ const ProfilePage: NextPage = () => {
   const [user, setUser] = useState<UserRes>()
 
   useEffect(() => {
+    console.log(uuid)
+    if (!uuid) return
     ;(async () => {
-      const { data, status } = await axios.get<UserRes>(
-        `${backend()}/user/?uuid=${uuid}`
-      )
+      try {
+        const { data, status } = await axios.get<UserRes>(
+          `${backend()}/user/?uuid=${uuid}`
+        )
 
-      if (status === 404) {
-        router.push('/404')
+        if (status === 404) {
+          router.push('/404')
+        }
+
+        setUser(data)
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const err = error as AxiosError
+          if (err.response?.status === 404) {
+            // router.push('/404')
+          }
+        }
       }
-
-      setUser(data)
     })()
   }, [uuid])
 
-  return user ? (
-    <>
-      <h1>{user.username}</h1>
-    </>
-  ) : (
-    <>loading...</>
-  )
+  return user ? <ProfileContent data={user} /> : <>loading...</>
 }
 
 export default ProfilePage
