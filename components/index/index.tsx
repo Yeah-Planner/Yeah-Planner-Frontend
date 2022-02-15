@@ -3,6 +3,7 @@ import {
   IndexContainerStyle,
   MainSloganStyle,
   MainSubSloganStyle,
+  ToBeContinueStyle,
   TodoArticleStyle,
   TodoContainerStyle,
   TodoDescContainerStyle,
@@ -43,6 +44,9 @@ const Home: NextPage = () => {
           </TodoDescItemStyle>
         </TodoDescContainerStyle>
       </TodoContainerStyle>
+      <ToBeContinueStyle>
+        And other features will be added soon.
+      </ToBeContinueStyle>
     </IndexContainerStyle>
   )
 }

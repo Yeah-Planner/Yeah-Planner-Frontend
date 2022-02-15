@@ -66,3 +66,11 @@ export const TodoItemTitleStyle = styled.h3`
 export const TodoArticleStyle = styled.p`
   font-size: 1.4rem;
 `
+
+export const ToBeContinueStyle = styled.div`
+  width: 100%;
+  text-align: center;
+  margin: 10rem 0;
+  font-size: 3.5rem;
+  font-weight: bold;
+`
