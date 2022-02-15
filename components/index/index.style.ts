@@ -27,3 +27,42 @@ export const MainSubSloganStyle = styled.h2`
     margin: 0;
   }
 `
+
+export const TodoContainerStyle = styled.div`
+  margin-top: 40vh;
+  width: 100%;
+  text-align: left;
+`
+
+export const TodoDescTitleStyle = styled.h2`
+  font-size: 2.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`
+
+export const TodoDescContainerStyle = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
+
+export const TodoDescItemStyle = styled.div`
+  width: 100%;
+  padding: 1rem;
+`
+
+export const TodoImageStyle = styled.img`
+  width: 100%;
+  height: auto;
+`
+
+export const TodoItemTitleStyle = styled.h3`
+  font-size: 1.8rem;
+`
+
+export const TodoArticleStyle = styled.p`
+  font-size: 1.4rem;
+`
