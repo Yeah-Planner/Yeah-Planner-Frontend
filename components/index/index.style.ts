@@ -47,6 +47,10 @@ export const TodoDescTitleStyle = styled.h2`
 export const TodoDescContainerStyle = styled.div`
   display: flex;
   justify-content: space-evenly;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const TodoDescItemStyle = styled.div`
@@ -73,4 +77,8 @@ export const ToBeContinueStyle = styled.div`
   margin: 10rem 0;
   font-size: 3.5rem;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `
