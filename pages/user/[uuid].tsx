@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ProfileContent from '../../components/Profile/ProfileContent'
 import { backend } from '../../util/util'
+import Head from 'next/head'
 
 export interface UserRes {
   uuid: string
@@ -48,7 +49,18 @@ const ProfilePage: NextPage<{ data: UserRes }> = ({ data: user }) => {
   useEffect(() => {
     if (!user) router.push('/404')
   }, [user])
-  return user && <ProfileContent data={user} />
+  return (
+    <>
+      <Head>
+        <title>{`${user?.username}'s profile - Yeah Planner`}</title>
+        <meta
+          name="description"
+          content={`${user?.username}'s Yeah Planner account profile page. You can follow ${user?.username} on Yeah Planner.`}
+        />
+      </Head>
+      {user && <ProfileContent data={user} />}
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
