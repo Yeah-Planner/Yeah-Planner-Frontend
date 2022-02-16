@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import TodoContainer from '../components/Todo/TodoContainer'
 import { getUser } from '../storage/storage'
 import { backend } from '../util/util'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 export interface TodoItem {
   id: string
@@ -16,8 +18,16 @@ export interface TodoItem {
 
 const TodoPage: NextPage = () => {
   const [todo, setTodo] = useState<TodoItem[]>([])
+  const router = useRouter()
 
   useEffect(() => {
+    const user = getUser()
+
+    if (!user) {
+      alert('로그인이 필요합니다.')
+      router.push('/')
+    }
+
     ;(async () => {
       const user = getUser()
       if (!user) return
@@ -134,15 +144,20 @@ const TodoPage: NextPage = () => {
   }
 
   return (
-    <TodoContainer
-      todo={todo}
-      addTodo={addTodo}
-      removeTodo={removeTodo}
-      toggleTodo={toggleTodo}
-      editTitle={editTitle}
-      editDeadline={editDeadline}
-      editContent={editContent}
-    />
+    <>
+      <Head>
+        <title>To-do - Yeah Planner</title>
+      </Head>
+      <TodoContainer
+        todo={todo}
+        addTodo={addTodo}
+        removeTodo={removeTodo}
+        toggleTodo={toggleTodo}
+        editTitle={editTitle}
+        editDeadline={editDeadline}
+        editContent={editContent}
+      />
+    </>
   )
 }
 
