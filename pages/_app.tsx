@@ -33,6 +33,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Yeah Planner</title>
+        <meta name="keyword" content="todo, to-do, schedule, planner, study" />
+        <meta
+          name="description"
+          content="Yeah Planner is a whole-in-one project such as to-do management and etc. You can now create your accout and start managing everything."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
