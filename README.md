@@ -1,4 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Yeah Planner
+
+A whole-in-one planner for your life. This will provide the ability to easily manage your tasks and goals. The only two things you need is Yeah Planner account and an internet connection. Now you can start planning your routine.
+
+## Requirements
+
+- [Node.js](https://nodejs.org/en/)
+- yarn
+- 2GB or more of RAM
+
+## Installation
+
+1. Clone this repository
+2. Install dependencies
+
+```bash
+yarn
+```
+
+3. Start server or build
+
+```bash
+yarn dev # development server
+yarn build # production build
+```
+
+Development server will open in `localhost:3000` (if 3000 port is taken 3000 + n will be used).
+
+## Contributing
+
+There's no form of issue or pull request yet. Please leave any kind of feedback freely. Thank you for your contribution.
+
+## Credits
+
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [Yarn](https://yarnpkg.com/)
+- [Node.js](https://nodejs.org/)
+- [Styled-Component](https://www.styled-components.com/)
+
+## Contact & Author
+
+[YEAHx4](https://github.com/5tarlight) - <developerstarlight@gmail.com>
+
+<!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -31,4 +75,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details. -->
