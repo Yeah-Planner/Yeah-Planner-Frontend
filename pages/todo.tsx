@@ -147,6 +147,10 @@ const TodoPage: NextPage = () => {
     <>
       <Head>
         <title>To-do - Yeah Planner</title>
+        <meta
+          name="description"
+          content="Yeah Planner's to-do page provide useful todo management. You can add, remove, edit, and toggle todo in one click."
+        />
       </Head>
       <TodoContainer
         todo={todo}
