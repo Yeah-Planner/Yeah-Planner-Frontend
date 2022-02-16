@@ -2,13 +2,14 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import Footer from '../components/Footer/Footer'
 import Header from '../components/Header/Header'
 import { getUser, User } from '../storage/storage'
 import GlobalStyle from '../styles/GlobalStyle'
 import { theme } from '../styles/theme'
 
 const Content = styled.div`
-  height: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   max-width: 1200px;
   min-width: 360px;
@@ -39,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Content>
           <Component {...pageProps} />
         </Content>
+        <Footer />
       </ThemeProvider>
     </>
   )
