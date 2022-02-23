@@ -28,6 +28,30 @@ const DatePicker: NextPage<Props> = ({
   setYear,
   year,
 }) => {
+  const handleLeftClick = () => {
+    if (month > 1) {
+      setMonth(month - 1)
+    } else {
+      setMonth(12)
+      setYear(year - 1)
+    }
+  }
+
+  const handleRightClick = () => {
+    if (month < 12) {
+      setMonth(month + 1)
+    } else {
+      setMonth(1)
+      setYear(year + 1)
+    }
+  }
+
+  const handleTodayClick = () => {
+    const initialDate = new Date()
+    setMonth(initialDate.getMonth() + 1)
+    setYear(initialDate.getFullYear())
+  }
+
   return (
     <DateDisplayStyle>
       <div>
@@ -39,13 +63,15 @@ const DatePicker: NextPage<Props> = ({
         />
       </div>
       <NavigateStyle>
-        <NavArrowLeftStyle>
+        <NavArrowLeftStyle onClick={handleLeftClick}>
           <AiOutlineArrowLeft />
         </NavArrowLeftStyle>
-        <NavArrowRightStyle>
+        <NavArrowRightStyle onClick={handleRightClick}>
           <AiOutlineArrowRight />
         </NavArrowRightStyle>
-        <NavTodayButtonStyle>Today</NavTodayButtonStyle>
+        <NavTodayButtonStyle onClick={handleTodayClick}>
+          Today
+        </NavTodayButtonStyle>
       </NavigateStyle>
     </DateDisplayStyle>
   )
