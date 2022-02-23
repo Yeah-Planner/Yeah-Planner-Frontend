@@ -22,11 +22,18 @@ const DatePicker: NextPage = () => {
   // }
 
   type ChangeHandler = (
-    dispatcher: Dispatch<SetStateAction<number>>
+    dispatcher: Dispatch<SetStateAction<number>>,
+    type: 'month' | 'year'
   ) => ChangeEventHandler<HTMLInputElement>
-  const handleChange: ChangeHandler = dispatch => e => {
+  const handleChange: ChangeHandler = (dispatch, type) => e => {
     const { value } = e.target
-    const newValue = parseInt(value)
+
+    const minValue = 1
+    const maxValue = type == 'month' ? 12 : 2100
+
+    // This is not perfect. If maliculous user multipulates the value with
+    // Dev tools it will be no use. Check it more in axios method.
+    const newValue = Math.max(Math.min(parseInt(value), maxValue), minValue)
     if (newValue) {
       dispatch(newValue)
     }
@@ -34,9 +41,9 @@ const DatePicker: NextPage = () => {
 
   return (
     <DateDisplayStyle>
-      <YearNumStyle value={year} onChange={handleChange(setYear)} />
+      <YearNumStyle value={year} onChange={handleChange(setYear, 'year')} />
       <DateSepStyle>.</DateSepStyle>
-      <DateNumStyle value={month} onChange={handleChange(setMonth)} />
+      <DateNumStyle value={month} onChange={handleChange(setMonth, 'month')} />
     </DateDisplayStyle>
   )
 }
