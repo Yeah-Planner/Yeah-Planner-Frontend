@@ -5,6 +5,7 @@ export const DateDisplayStyle = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  margin-bottom: 2rem;
 `
 
 export const DateSepStyle = styled.span``
