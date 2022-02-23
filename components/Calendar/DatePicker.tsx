@@ -5,8 +5,13 @@ import {
   DateDisplayStyle,
   DateNumStyle,
   DateSepStyle,
+  NavArrowLeftStyle,
+  NavArrowRightStyle,
+  NavigateStyle,
+  NavTodayButtonStyle,
   YearNumStyle,
 } from './Calendar.style'
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 
 interface Props {
   month: number
@@ -33,7 +38,15 @@ const DatePicker: NextPage<Props> = ({
           onChange={handleChange(setMonth, 'month')}
         />
       </div>
-      <div>이동</div>
+      <NavigateStyle>
+        <NavArrowLeftStyle>
+          <AiOutlineArrowLeft />
+        </NavArrowLeftStyle>
+        <NavArrowRightStyle>
+          <AiOutlineArrowRight />
+        </NavArrowRightStyle>
+        <NavTodayButtonStyle>Today</NavTodayButtonStyle>
+      </NavigateStyle>
     </DateDisplayStyle>
   )
 }

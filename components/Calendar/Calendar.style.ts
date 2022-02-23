@@ -49,3 +49,39 @@ export const DateNumStyle = styled.input`
 export const YearNumStyle = styled(DateNumStyle)`
   width: 8rem;
 `
+
+export const NavigateStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const NavArrowStyle = styled.button`
+  background-color: #4287f5;
+  border: none;
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  padding-top: 0.25rem;
+
+  &:hover {
+    background-color: #3975d4;
+    cursor: pointer;
+  }
+`
+
+export const NavArrowLeftStyle = styled(NavArrowStyle)`
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+`
+
+export const NavArrowRightStyle = styled(NavArrowStyle)`
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+`
+
+export const NavTodayButtonStyle = styled(NavArrowStyle)`
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  width: 5rem;
+  border-radius: 0.2rem;
+`
