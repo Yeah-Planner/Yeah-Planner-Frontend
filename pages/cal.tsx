@@ -46,7 +46,7 @@ const Cal: NextPage = () => {
         year={year}
         setYear={setYear}
       />
-      <Calendar />
+      <Calendar month={month} year={year} />
     </CalendarContainerStyle>
   )
 }

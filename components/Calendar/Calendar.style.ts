@@ -103,3 +103,20 @@ export const NavTodayButtonStyle = styled(NavArrowStyle)`
     margin-left: 1rem;
   }
 `
+
+export const CalendarTableStyle = styled.table`
+  width: 100%;
+  /* border: 1px solid #ccc; */
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+`
+
+export const TableHeaderStyle = styled.th`
+  border: 1px solid #ccc;
+`
+
+export const TableRowStyle = styled.tr`
+  border: none;
+  vertical-align: baseline;
+`
