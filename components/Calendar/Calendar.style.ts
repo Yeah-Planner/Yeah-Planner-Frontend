@@ -44,10 +44,19 @@ export const DateNumStyle = styled.input`
   &:focus {
     border-bottom: 1px solid #000;
   }
+
+  @media (max-width: 570px) {
+    font-size: 1.5rem;
+    width: 2rem;
+  }
 `
 
 export const YearNumStyle = styled(DateNumStyle)`
   width: 8rem;
+
+  @media (max-width: 570px) {
+    width: 4rem;
+  }
 `
 
 export const NavigateStyle = styled.div`
@@ -67,6 +76,11 @@ const NavArrowStyle = styled.button`
     background-color: #3975d4;
     cursor: pointer;
   }
+
+  @media (max-width: 570px) {
+    font-size: 1rem;
+    width: 2rem;
+  }
 `
 
 export const NavArrowLeftStyle = styled(NavArrowStyle)`
@@ -84,4 +98,8 @@ export const NavTodayButtonStyle = styled(NavArrowStyle)`
   font-size: 1.2rem;
   width: 5rem;
   border-radius: 0.2rem;
+
+  @media (max-width: 570px) {
+    margin-left: 1rem;
+  }
 `
