@@ -1,6 +1,9 @@
 import { NextPage } from 'next'
 import {
   CalendarTableStyle,
+  TableDayDisalbedStyle,
+  TableDayNumStyle,
+  TableDayStyle,
   TableHeaderStyle,
   TableRowStyle,
 } from './Calendar.style'
@@ -42,9 +45,16 @@ const Calendar: NextPage<Props> = ({ month, year }) => {
               {[...Array(7)].map((_, j) => {
                 const date = i * 7 + j + 1 - startDay
                 if (date <= 0 || date > lastDate.getDate()) {
-                  return <TableHeaderStyle key={j} />
+                  return <TableDayDisalbedStyle key={j} />
                 }
-                return <TableHeaderStyle key={j}>{date}</TableHeaderStyle>
+                return (
+                  <TableDayStyle key={j}>
+                    <TableDayNumStyle>
+                      <TableDayNumStyle>{date}</TableDayNumStyle>
+                    </TableDayNumStyle>
+                    {/* Other additional components */}
+                  </TableDayStyle>
+                )
               })}
             </TableRowStyle>
           )

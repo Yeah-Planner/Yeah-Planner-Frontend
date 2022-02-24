@@ -114,9 +114,26 @@ export const CalendarTableStyle = styled.table`
 
 export const TableHeaderStyle = styled.th`
   border: 1px solid #ccc;
+  border-bottom: 2px solid #bbb;
 `
 
 export const TableRowStyle = styled.tr`
   border: none;
   vertical-align: baseline;
+`
+
+export const TableDayStyle = styled.td`
+  border: 1px solid #ccc;
+  height: 8rem;
+`
+
+export const TableDayDisalbedStyle = styled(TableDayStyle)`
+  color: #ccc;
+`
+
+export const TableDayNumStyle = styled.div`
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  padding: 0 0.25rem;
 `
