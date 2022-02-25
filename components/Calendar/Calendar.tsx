@@ -34,9 +34,11 @@ const Calendar: NextPage<Props> = ({ month, year }) => {
   return (
     <CalendarTableStyle role="presentation">
       <thead>
-        {days.map((day, i) => {
-          return <TableHeaderStyle key={i}>{day}</TableHeaderStyle>
-        })}
+        <tr>
+          {days.map((day, i) => {
+            return <TableHeaderStyle key={i}>{day}</TableHeaderStyle>
+          })}
+        </tr>
       </thead>
       <tbody>
         {weeks.map((week, i) => {

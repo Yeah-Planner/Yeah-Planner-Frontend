@@ -27,7 +27,7 @@ const Cal: NextPage = () => {
     const { value } = e.target
 
     const minValue = 1
-    const maxValue = type == 'month' ? 12 : 2100
+    const maxValue = type == 'month' ? 12 : 9999
 
     // This is not perfect. If maliculous user multipulates the value with
     // Dev tools it will be no use. Check it more in axios method.

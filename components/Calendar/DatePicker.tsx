@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { CalChangeHandler } from '../../pages/cal'
 import {
   DateDisplayStyle,
@@ -28,38 +28,79 @@ const DatePicker: NextPage<Props> = ({
   setYear,
   year,
 }) => {
+  const [inputMonth, setInputMonth] = useState(month)
+  const [inputYear, setInputYear] = useState(year)
+
   const handleLeftClick = () => {
     if (month > 1) {
       setMonth(month - 1)
+      setInputMonth(month - 1)
     } else {
       setMonth(12)
+      setInputMonth(12)
       setYear(year - 1)
+      setInputYear(year - 1)
     }
   }
 
   const handleRightClick = () => {
     if (month < 12) {
       setMonth(month + 1)
+      setInputMonth(month + 1)
     } else {
       setMonth(1)
+      setInputMonth(1)
       setYear(year + 1)
+      setInputYear(year + 1)
     }
   }
 
   const handleTodayClick = () => {
     const initialDate = new Date()
     setMonth(initialDate.getMonth() + 1)
+    setInputMonth(initialDate.getMonth() + 1)
     setYear(initialDate.getFullYear())
+    setInputYear(initialDate.getFullYear())
+  }
+
+  const parseNum = (str: string): number => {
+    const parse = parseInt(str)
+    if (isNaN(parse)) {
+      return -1
+    }
+
+    return parse
   }
 
   return (
     <DateDisplayStyle>
       <div>
-        <YearNumStyle value={year} onChange={handleChange(setYear, 'year')} />
+        <YearNumStyle
+          type="number"
+          value={inputYear > 0 ? inputYear : '1'}
+          onChange={({ target: { value } }) => {
+            const parsed = parseNum(value)
+            setInputYear(parsed)
+            if (parsed > 0 && parsed < 3000) setYear(parsed)
+          }}
+          onBlur={e => {
+            handleChange(setYear, 'year')(e)
+            setInputYear(Math.max(1, Math.min(9999, inputYear)))
+          }}
+        />
         <DateSepStyle>.</DateSepStyle>
         <DateNumStyle
-          value={month}
-          onChange={handleChange(setMonth, 'month')}
+          type="number"
+          value={inputMonth > 0 ? inputMonth : '1'}
+          onChange={({ target: { value } }) => {
+            const parsed = parseNum(value)
+            setInputMonth(parsed)
+            if (parsed > 0 && parsed < 13) setMonth(parsed)
+          }}
+          onBlur={e => {
+            handleChange(setMonth, 'month')(e)
+            setInputMonth(Math.max(1, Math.min(12, inputMonth)))
+          }}
         />
       </div>
       <NavigateStyle>

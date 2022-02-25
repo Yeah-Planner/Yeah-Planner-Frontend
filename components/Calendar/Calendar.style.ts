@@ -112,9 +112,11 @@ export const CalendarTableStyle = styled.table`
   border-spacing: 0;
 `
 
-export const TableHeaderStyle = styled.th`
+export const TableHeaderStyle = styled.td`
   border: 1px solid #ccc;
   border-bottom: 2px solid #bbb;
+  align-items: center;
+  text-align: center;
 `
 
 export const TableRowStyle = styled.tr`
