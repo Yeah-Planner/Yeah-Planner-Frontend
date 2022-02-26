@@ -1,12 +1,15 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 import {
   CalendarTableStyle,
-  TableDayDisalbedStyle,
-  TableDayNumStyle,
-  TableDayStyle,
+  // TableDayDisalbedStyle,
+  // TableDayNumStyle,
+  // TableDayStyle,
   TableHeaderStyle,
   TableRowStyle,
 } from './Calendar.style'
+import CalendarDay from './CalendarDay'
+import DayPopup from './DayPopup'
 // import FullCalendar from '@fullcalendar/react'
 // import dayGridPlugin from '@fullcalendar/daygrid'
 
@@ -25,6 +28,16 @@ const Calendar: NextPage<Props> = ({ month, year }) => {
   const startDay = firstDate.getDay()
   const weekNum = Math.ceil((lastDate.getDate() + startDay) / 7)
 
+  const [show, setShow] = useState(false)
+  const [popupDate, setPopupDate] = useState(1)
+
+  const toggleShow = (newDate: number) => {
+    if (newDate !== popupDate) {
+      setShow(true)
+      setPopupDate(newDate)
+    } else setShow(!show)
+  }
+
   const weeks = [] // iterator
   for (let i = 0; i < weekNum; i++) {
     // weeks.push(<TableRowStyle key={i} />)
@@ -32,37 +45,54 @@ const Calendar: NextPage<Props> = ({ month, year }) => {
   }
 
   return (
-    <CalendarTableStyle role="presentation">
-      <thead>
-        <tr>
-          {days.map((day, i) => {
-            return <TableHeaderStyle key={i}>{day}</TableHeaderStyle>
+    <>
+      <CalendarTableStyle role="presentation">
+        <thead>
+          <tr>
+            {days.map((day, i) => {
+              return <TableHeaderStyle key={i}>{day}</TableHeaderStyle>
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {weeks.map((week, i) => {
+            return (
+              <TableRowStyle key={i}>
+                {[...Array(7)].map((_, j) => {
+                  const date = i * 7 + j + 1 - startDay
+                  if (date <= 0 || date > lastDate.getDate()) {
+                    return (
+                      <CalendarDay
+                        disabled={true}
+                        key={j}
+                        toggleShow={toggleShow}
+                        setPopupDate={setPopupDate}
+                      />
+                    )
+                    // return <TableDayDisalbedStyle key={j} />
+                  }
+                  return (
+                    // <TableDayStyle key={j}>
+                    //   <TableDayNumStyle>
+                    //     <TableDayNumStyle>{date}</TableDayNumStyle>
+                    //   </TableDayNumStyle>
+                    //   {/* Other additional components */}
+                    // </TableDayStyle>
+                    <CalendarDay
+                      key={j}
+                      date={date}
+                      toggleShow={toggleShow}
+                      setPopupDate={setPopupDate}
+                    />
+                  )
+                })}
+              </TableRowStyle>
+            )
           })}
-        </tr>
-      </thead>
-      <tbody>
-        {weeks.map((week, i) => {
-          return (
-            <TableRowStyle key={i}>
-              {[...Array(7)].map((_, j) => {
-                const date = i * 7 + j + 1 - startDay
-                if (date <= 0 || date > lastDate.getDate()) {
-                  return <TableDayDisalbedStyle key={j} />
-                }
-                return (
-                  <TableDayStyle key={j}>
-                    <TableDayNumStyle>
-                      <TableDayNumStyle>{date}</TableDayNumStyle>
-                    </TableDayNumStyle>
-                    {/* Other additional components */}
-                  </TableDayStyle>
-                )
-              })}
-            </TableRowStyle>
-          )
-        })}
-      </tbody>
-    </CalendarTableStyle>
+        </tbody>
+      </CalendarTableStyle>
+      <DayPopup show={show} year={year} month={month} date={popupDate} />
+    </>
   )
 }
 

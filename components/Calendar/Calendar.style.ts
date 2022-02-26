@@ -127,10 +127,20 @@ export const TableRowStyle = styled.tr`
 export const TableDayStyle = styled.td`
   border: 1px solid #ccc;
   height: 8rem;
+
+  &:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
 `
 
 export const TableDayDisalbedStyle = styled(TableDayStyle)`
   color: #ccc;
+
+  &:hover {
+    background-color: transparent;
+    cursor: default;
+  }
 `
 
 export const TableDayNumStyle = styled.div`
@@ -138,4 +148,14 @@ export const TableDayNumStyle = styled.div`
   justify-content: right;
   width: 100%;
   padding: 0 0.25rem;
+`
+
+export const DayPopupStyle = styled.div`
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  background-color: grey;
+  z-index: 50;
+  width: 300px;
+  height: 500px;
 `
