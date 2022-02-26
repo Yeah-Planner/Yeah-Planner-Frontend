@@ -28,13 +28,25 @@ export const FooterCopyrightStyle = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `
 
 export const FooterItemStyle = styled.div`
   margin: 0.2rem 1rem;
+
+  @media (max-width: 768px) {
+    margin: 0.2rem 0.5rem;
+  }
 `
 
 export const FooterLinkStyle = styled.a`
   /* display: block; */
   margin: 0 2rem;
+
+  @media (max-width: 768px) {
+    margin: 0 0.5rem;
+  }
 `
