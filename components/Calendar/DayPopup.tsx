@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { DayPopupStyle } from './Calendar.style'
+import { DayPopupBackgroundStyle, DayPopupStyle } from './Calendar.style'
 
 interface Props {
   show: boolean
@@ -10,9 +10,11 @@ interface Props {
 
 const DayPopup: NextPage<Props> = ({ show, year, month, date }) => {
   return show ? (
-    <DayPopupStyle>
-      {year}.{month}.{date}
-    </DayPopupStyle>
+    <DayPopupBackgroundStyle>
+      <DayPopupStyle>
+        {year}.{month}.{date}
+      </DayPopupStyle>
+    </DayPopupBackgroundStyle>
   ) : null
 }
 

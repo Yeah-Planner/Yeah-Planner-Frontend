@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const CalendarContainerStyle = styled.div`
   display: flex;
@@ -150,12 +150,52 @@ export const TableDayNumStyle = styled.div`
   padding: 0 0.25rem;
 `
 
+const showAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(400px) scale(0.75)
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-16px) scale(1)
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px)
+  }
+`
+
 export const DayPopupStyle = styled.div`
   display: flex;
-  position: fixed;
   flex-direction: column;
-  background-color: grey;
+  background-color: white;
+  padding: 1rem 2rem;
   z-index: 50;
   width: 300px;
   height: 500px;
+  animation: 0.2s ease-in-out 0s 1 normal forwards running ${showAnimation};
+  box-shadow: 0.2px 0.2px 1.2px rgba(0, 0, 0, 0.015),
+    0.3px 0.3px 2.7px rgba(0, 0, 0, 0.022),
+    0.6px 0.6px 4.6px rgba(0, 0, 0, 0.027),
+    0.9px 0.9px 6.9px rgba(0, 0, 0, 0.031),
+    1.3px 1.3px 10px rgba(0, 0, 0, 0.035),
+    1.8px 1.8px 14.2px rgba(0, 0, 0, 0.039),
+    2.5px 2.5px 20.1px rgba(0, 0, 0, 0.043),
+    3.7px 3.7px 29.2px rgba(0, 0, 0, 0.048),
+    5.6px 5.6px 45px rgba(0, 0, 0, 0.055), 10px 10px 80px rgba(0, 0, 0, 0.07);
+  pointer-events: painted;
+`
+
+export const DayPopupBackgroundStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 49;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 `
