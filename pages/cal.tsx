@@ -3,6 +3,7 @@ import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react'
 import Calendar from '../components/Calendar/Calendar'
 import { CalendarContainerStyle } from '../components/Calendar/Calendar.style'
 import DatePicker from '../components/Calendar/DatePicker'
+import Head from 'next/head'
 
 export type CalChangeHandler = (
   dispatcher: Dispatch<SetStateAction<number>>,
@@ -38,16 +39,26 @@ const Cal: NextPage = () => {
   }
 
   return (
-    <CalendarContainerStyle>
-      <DatePicker
-        handleChange={handleChange}
-        month={month}
-        setMonth={setMonth}
-        year={year}
-        setYear={setYear}
-      />
-      <Calendar month={month} year={year} />
-    </CalendarContainerStyle>
+    <>
+      <Head>
+        <title>Calendar - Yeah Planner</title>
+        <meta
+          name="description"
+          content="Yeah Planner Calendar page. Index and Plan your daily activities."
+        />
+      </Head>
+
+      <CalendarContainerStyle>
+        <DatePicker
+          handleChange={handleChange}
+          month={month}
+          setMonth={setMonth}
+          year={year}
+          setYear={setYear}
+        />
+        <Calendar month={month} year={year} />
+      </CalendarContainerStyle>
+    </>
   )
 }
 
