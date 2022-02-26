@@ -216,3 +216,24 @@ export const DayPopupExitSvgStyle = styled.svg`
   height: 1em;
   width: 1em;
 `
+
+export const DayPopupLeftButtonStyle = styled(NavArrowLeftStyle)`
+  background-color: transparent;
+  width: 1rem;
+  margin: 0;
+  margin-right: 0.5rem;
+
+  &:hover {
+    background-color: transparent;
+  }
+`
+
+export const DayPopupRightButtonStyle = styled(NavArrowRightStyle)`
+  background-color: transparent;
+  margin: 0;
+  width: 1rem;
+
+  &:hover {
+    background-color: transparent;
+  }
+`

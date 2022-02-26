@@ -22,6 +22,8 @@ interface Props {
   setPopupDate: (newPopupDate: number) => void
   setYear: Dispatch<SetStateAction<number>>
   setMonth: Dispatch<SetStateAction<number>>
+  setInputMonth: Dispatch<SetStateAction<number>>
+  setInputYear: Dispatch<SetStateAction<number>>
 }
 
 const Calendar: NextPage<Props> = ({
@@ -33,6 +35,8 @@ const Calendar: NextPage<Props> = ({
   setShow,
   setMonth,
   setYear,
+  setInputMonth,
+  setInputYear,
 }) => {
   // This causes internal server error.
   // return <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
@@ -114,6 +118,8 @@ const Calendar: NextPage<Props> = ({
           setDate={setPopupDate}
           setMonth={setMonth}
           setYear={setYear}
+          setInputMonth={setInputMonth}
+          setInputYear={setInputYear}
         />
       ) : null}
     </>

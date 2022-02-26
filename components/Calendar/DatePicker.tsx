@@ -20,6 +20,10 @@ interface Props {
   setYear: Dispatch<SetStateAction<number>>
   setDate: Dispatch<SetStateAction<number>>
   handleChange: CalChangeHandler
+  inputMonth: number
+  inputYear: number
+  setInputMonth: Dispatch<SetStateAction<number>>
+  setInputYear: Dispatch<SetStateAction<number>>
 }
 
 const DatePicker: NextPage<Props> = ({
@@ -29,10 +33,11 @@ const DatePicker: NextPage<Props> = ({
   setDate,
   setYear,
   year,
+  inputMonth,
+  inputYear,
+  setInputMonth,
+  setInputYear,
 }) => {
-  const [inputMonth, setInputMonth] = useState(month)
-  const [inputYear, setInputYear] = useState(year)
-
   const handleLeftClick = () => {
     if (month > 1) {
       setMonth(month - 1)
@@ -80,7 +85,7 @@ const DatePicker: NextPage<Props> = ({
       <div>
         <YearNumStyle
           type="number"
-          value={inputYear > 0 ? inputYear : '1'}
+          value={inputYear > 0 ? inputYear : ''}
           onChange={({ target: { value } }) => {
             const parsed = parseNum(value)
             setInputYear(parsed)
@@ -94,7 +99,7 @@ const DatePicker: NextPage<Props> = ({
         <DateSepStyle>.</DateSepStyle>
         <DateNumStyle
           type="number"
-          value={inputMonth > 0 ? inputMonth : '1'}
+          value={inputMonth > 0 ? inputMonth : ''}
           onChange={({ target: { value } }) => {
             const parsed = parseNum(value)
             setInputMonth(parsed)

@@ -24,6 +24,8 @@ const Cal: NextPage = () => {
   const [year, setYear] = useState(initialDate.getFullYear())
   const [show, setShow] = useState(false)
   const [popupDate, setPopupDate] = useState(1)
+  const [inputMonth, setInputMonth] = useState(month)
+  const [inputYear, setInputYear] = useState(year)
   const router = useRouter()
 
   useEffect(() => {
@@ -75,6 +77,10 @@ const Cal: NextPage = () => {
           year={year}
           setYear={setYear}
           setDate={setPopupDate}
+          inputMonth={inputMonth}
+          inputYear={inputYear}
+          setInputMonth={setInputMonth}
+          setInputYear={setInputYear}
         />
         <Calendar
           month={month}
@@ -85,6 +91,8 @@ const Cal: NextPage = () => {
           show={show}
           setMonth={setMonth}
           setYear={setYear}
+          setInputMonth={setInputMonth}
+          setInputYear={setInputYear}
         />
       </CalendarContainerStyle>
     </>
