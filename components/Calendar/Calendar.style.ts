@@ -199,3 +199,20 @@ export const DayPopupBackgroundStyle = styled.div`
   justify-content: center;
   pointer-events: none;
 `
+
+export const DayPopupExitStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  color: rgb(134, 142, 150);
+  margin-bottom: 2.25rem;
+`
+
+export const DayPopupExitSvgStyle = styled.svg`
+  cursor: pointer;
+  stroke: currentColor;
+  fill: currentColor;
+  stroke-width: 0;
+  height: 1em;
+  width: 1em;
+`

@@ -18,6 +18,7 @@ interface Props {
   year: number
   setMonth: Dispatch<SetStateAction<number>>
   setYear: Dispatch<SetStateAction<number>>
+  setDate: Dispatch<SetStateAction<number>>
   handleChange: CalChangeHandler
 }
 
@@ -25,6 +26,7 @@ const DatePicker: NextPage<Props> = ({
   handleChange,
   month,
   setMonth,
+  setDate,
   setYear,
   year,
 }) => {
@@ -61,6 +63,7 @@ const DatePicker: NextPage<Props> = ({
     setInputMonth(initialDate.getMonth() + 1)
     setYear(initialDate.getFullYear())
     setInputYear(initialDate.getFullYear())
+    setDate(initialDate.getDate())
   }
 
   const parseNum = (str: string): number => {

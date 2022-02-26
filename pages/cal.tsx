@@ -1,9 +1,17 @@
 import { NextPage } from 'next'
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react'
+import {
+  ChangeEventHandler,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react'
 import Calendar from '../components/Calendar/Calendar'
 import { CalendarContainerStyle } from '../components/Calendar/Calendar.style'
 import DatePicker from '../components/Calendar/DatePicker'
 import Head from 'next/head'
+import { getUser } from '../storage/storage'
+import { useRouter } from 'next/router'
 
 export type CalChangeHandler = (
   dispatcher: Dispatch<SetStateAction<number>>,
@@ -14,6 +22,17 @@ const Cal: NextPage = () => {
   const initialDate = new Date()
   const [month, setMonth] = useState(initialDate.getMonth() + 1)
   const [year, setYear] = useState(initialDate.getFullYear())
+  const [show, setShow] = useState(false)
+  const [popupDate, setPopupDate] = useState(1)
+  const router = useRouter()
+
+  useEffect(() => {
+    const user = getUser()
+    if (!user) {
+      alert('Please login first')
+      router.push('/')
+    }
+  })
 
   // const filterNonDigits: KeyboardEventHandler<HTMLInputElement> = key => {
   //   try {
@@ -55,8 +74,18 @@ const Cal: NextPage = () => {
           setMonth={setMonth}
           year={year}
           setYear={setYear}
+          setDate={setPopupDate}
         />
-        <Calendar month={month} year={year} />
+        <Calendar
+          month={month}
+          year={year}
+          popupDate={popupDate}
+          setPopupDate={setPopupDate}
+          setShow={setShow}
+          show={show}
+          setMonth={setMonth}
+          setYear={setYear}
+        />
       </CalendarContainerStyle>
     </>
   )

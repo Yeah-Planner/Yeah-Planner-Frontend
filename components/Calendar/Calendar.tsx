@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import {
   CalendarTableStyle,
   // TableDayDisalbedStyle,
@@ -16,9 +16,24 @@ import DayPopup from './DayPopup'
 interface Props {
   month: number
   year: number
+  show: boolean
+  setShow: (newShow: boolean) => void
+  popupDate: number
+  setPopupDate: (newPopupDate: number) => void
+  setYear: Dispatch<SetStateAction<number>>
+  setMonth: Dispatch<SetStateAction<number>>
 }
 
-const Calendar: NextPage<Props> = ({ month, year }) => {
+const Calendar: NextPage<Props> = ({
+  month,
+  year,
+  popupDate,
+  setPopupDate,
+  show,
+  setShow,
+  setMonth,
+  setYear,
+}) => {
   // This causes internal server error.
   // return <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
 
@@ -28,15 +43,13 @@ const Calendar: NextPage<Props> = ({ month, year }) => {
   const startDay = firstDate.getDay()
   const weekNum = Math.ceil((lastDate.getDate() + startDay) / 7)
 
-  const [show, setShow] = useState(false)
-  const [popupDate, setPopupDate] = useState(1)
-
   const toggleShow = (newDate: number) => {
     if (newDate !== popupDate) {
       setShow(true)
       setPopupDate(newDate)
     } else setShow(!show)
   }
+  const handleClose = () => setShow(false)
 
   const weeks = [] // iterator
   for (let i = 0; i < weekNum; i++) {
@@ -91,7 +104,18 @@ const Calendar: NextPage<Props> = ({ month, year }) => {
           })}
         </tbody>
       </CalendarTableStyle>
-      <DayPopup show={show} year={year} month={month} date={popupDate} />
+
+      {show ? (
+        <DayPopup
+          year={year}
+          month={month}
+          date={popupDate}
+          handleClose={handleClose}
+          setDate={setPopupDate}
+          setMonth={setMonth}
+          setYear={setYear}
+        />
+      ) : null}
     </>
   )
 }
