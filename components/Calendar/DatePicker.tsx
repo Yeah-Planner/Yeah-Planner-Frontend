@@ -42,7 +42,7 @@ const DatePicker: NextPage<Props> = ({
     if (month > 1) {
       setMonth(month - 1)
       setInputMonth(month - 1)
-    } else {
+    } else if (year > 1) {
       setMonth(12)
       setInputMonth(12)
       setYear(year - 1)
@@ -54,7 +54,7 @@ const DatePicker: NextPage<Props> = ({
     if (month < 12) {
       setMonth(month + 1)
       setInputMonth(month + 1)
-    } else {
+    } else if (year < 9999) {
       setMonth(1)
       setInputMonth(1)
       setYear(year + 1)

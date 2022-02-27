@@ -40,7 +40,7 @@ const DayPopup: NextPage<Props> = ({
         setMonth(month - 1)
         setInputMonth(month - 1)
         setDate(new Date(year, month - 1, 0).getDate())
-      } else {
+      } else if (year > 1) {
         setMonth(12)
         setInputMonth(12)
         setDate(new Date(year - 1, 12, 0).getDate())
@@ -56,7 +56,7 @@ const DayPopup: NextPage<Props> = ({
         setMonth(month + 1)
         setInputMonth(month + 1)
         setDate(1)
-      } else {
+      } else if (year < 9999) {
         setMonth(1)
         setInputMonth(1)
         setDate(1)
