@@ -205,7 +205,7 @@ export const DayPopupExitStyle = styled.div`
   justify-content: space-between;
   font-size: 1.5rem;
   color: rgb(134, 142, 150);
-  margin-bottom: 2.25rem;
+  margin-bottom: 1rem;
 `
 
 export const DayPopupExitSvgStyle = styled.svg`
@@ -236,4 +236,81 @@ export const DayPopupRightButtonStyle = styled(NavArrowRightStyle)`
   &:hover {
     background-color: transparent;
   }
+`
+
+export const DayPopupDateStyle = styled.div`
+  display: flex;
+  justify-content: left;
+  font-size: 1.5rem;
+`
+
+export const DayPopupTodoListStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.003),
+    0.1px 0.1px 5.3px rgba(0, 0, 0, 0.004),
+    0.1px 0.1px 10px rgba(0, 0, 0, 0.005),
+    0.2px 0.2px 17.9px rgba(0, 0, 0, 0.006),
+    0.4px 0.4px 33.4px rgba(0, 0, 0, 0.007), 1px 1px 80px rgba(0, 0, 0, 0.01);
+`
+
+export const DayPopupTodoListHeaderStyle = styled.div`
+  display: flex;
+  justify-content: left;
+`
+
+export const DayPopupTodoTitleInputStyle = styled.input`
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+`
+
+export const DayPopupTodoAddButtonStyle = styled.button`
+  font-size: 1.2rem;
+  width: 30%;
+  /* background-color: #6b84ff; */
+  background-color: transparent;
+  /* border: 1px solid #ccc; */
+  margin-left: 0.2rem;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    /* background-color: #596ed4; */
+  }
+`
+
+export const DayPopupTodoItemContainerStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`
+
+export const DayPopupTodoItemStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0.1rem;
+  margin-bottom: 0.5rem;
+
+  /* & + & {
+    border-top: 1px solid #ccc;
+  } */
+`
+
+export const DayPopupTodoItemRemoveButtonStyle = styled(
+  DayPopupTodoAddButtonStyle
+)`
+  width: 15%;
 `

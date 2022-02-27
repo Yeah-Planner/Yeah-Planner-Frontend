@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { createHash } from 'crypto'
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import TodoContainer from '../components/Todo/TodoContainer'
 import { getUser } from '../storage/storage'

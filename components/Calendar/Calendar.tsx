@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import { Dispatch, SetStateAction } from 'react'
+import { CalTodo } from '../../pages/cal'
 import {
   CalendarTableStyle,
   // TableDayDisalbedStyle,
@@ -24,6 +25,8 @@ interface Props {
   setMonth: Dispatch<SetStateAction<number>>
   setInputMonth: Dispatch<SetStateAction<number>>
   setInputYear: Dispatch<SetStateAction<number>>
+  todos: CalTodo[]
+  setTodos: Dispatch<SetStateAction<CalTodo[]>>
 }
 
 const Calendar: NextPage<Props> = ({
@@ -37,6 +40,8 @@ const Calendar: NextPage<Props> = ({
   setYear,
   setInputMonth,
   setInputYear,
+  setTodos,
+  todos,
 }) => {
   // This causes internal server error.
   // return <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
@@ -120,6 +125,8 @@ const Calendar: NextPage<Props> = ({
           setYear={setYear}
           setInputMonth={setInputMonth}
           setInputYear={setInputYear}
+          setTodos={setTodos}
+          todos={todos}
         />
       ) : null}
     </>

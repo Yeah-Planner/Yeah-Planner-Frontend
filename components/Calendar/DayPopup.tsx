@@ -1,12 +1,23 @@
+import { createHash } from 'crypto'
 import { NextPage } from 'next'
+import { useState } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { CalTodo } from '../../pages/cal'
 import {
   DayPopupBackgroundStyle,
+  DayPopupDateStyle,
   DayPopupExitStyle,
   DayPopupExitSvgStyle,
   DayPopupLeftButtonStyle,
   DayPopupRightButtonStyle,
   DayPopupStyle,
+  DayPopupTodoAddButtonStyle,
+  DayPopupTodoItemContainerStyle,
+  DayPopupTodoItemRemoveButtonStyle,
+  DayPopupTodoItemStyle,
+  DayPopupTodoListHeaderStyle,
+  DayPopupTodoListStyle,
+  DayPopupTodoTitleInputStyle,
 } from './Calendar.style'
 
 interface Props {
@@ -19,6 +30,8 @@ interface Props {
   setYear(year: number): void
   setInputMonth(month: number): void
   setInputYear(year: number): void
+  todos: CalTodo[]
+  setTodos(todos: CalTodo[]): void
 }
 
 const DayPopup: NextPage<Props> = ({
@@ -31,7 +44,11 @@ const DayPopup: NextPage<Props> = ({
   setYear,
   setInputMonth,
   setInputYear,
+  setTodos,
+  todos,
 }) => {
+  const [content, setContent] = useState('')
+
   const lastDayOfMonth = new Date(year, month, 0).getDate()
   const handleLeftClick = () => {
     if (date > 1) setDate(date - 1)
@@ -66,6 +83,26 @@ const DayPopup: NextPage<Props> = ({
     }
   }
 
+  const getId = (): string => {
+    return createHash('sha256')
+      .update(content + Date.now().toString())
+      .digest('hex')
+  }
+  const handleSubmit = (id: string) => {
+    setTodos([
+      ...todos,
+      {
+        year,
+        month,
+        date,
+        content,
+        id,
+      },
+    ])
+    setContent('')
+    //
+  }
+
   return (
     <DayPopupBackgroundStyle>
       <DayPopupStyle>
@@ -90,7 +127,58 @@ const DayPopup: NextPage<Props> = ({
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
           </DayPopupExitSvgStyle>
         </DayPopupExitStyle>
-        {year}.{month}.{date}
+        <DayPopupDateStyle>
+          {year}.{month}.{date}
+        </DayPopupDateStyle>
+        <DayPopupTodoListStyle>
+          <DayPopupTodoListHeaderStyle>
+            <DayPopupTodoTitleInputStyle
+              value={content}
+              onChange={({ target: { value } }) => {
+                setContent(value)
+              }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  handleSubmit(getId())
+                }
+              }}
+            />
+            <DayPopupTodoAddButtonStyle
+              onClick={e => {
+                e.stopPropagation()
+                e.preventDefault()
+                handleSubmit(getId())
+              }}
+            >
+              추가
+            </DayPopupTodoAddButtonStyle>
+          </DayPopupTodoListHeaderStyle>
+          <DayPopupTodoItemContainerStyle>
+            {todos
+              .filter(
+                ({ year: y, month: m, date: d }) =>
+                  y === year && m === month && d === date
+              )
+              .map((todo, i) => (
+                <DayPopupTodoItemStyle key={i}>
+                  <div>{todo.content}</div>
+                  <DayPopupTodoItemRemoveButtonStyle
+                    onClick={e => {
+                      e.stopPropagation()
+                      e.preventDefault()
+                      setTodos(
+                        todos.filter(({ id }) => {
+                          return todo.id !== id
+                        })
+                      )
+                    }}
+                  >
+                    -
+                  </DayPopupTodoItemRemoveButtonStyle>
+                </DayPopupTodoItemStyle>
+              ))}
+          </DayPopupTodoItemContainerStyle>
+        </DayPopupTodoListStyle>
       </DayPopupStyle>
     </DayPopupBackgroundStyle>
   )

@@ -18,6 +18,14 @@ export type CalChangeHandler = (
   type: 'month' | 'year'
 ) => ChangeEventHandler<HTMLInputElement>
 
+export interface CalTodo {
+  year: number
+  month: number
+  date: number
+  content: string
+  id: string
+}
+
 const Cal: NextPage = () => {
   const initialDate = new Date()
   const [month, setMonth] = useState(initialDate.getMonth() + 1)
@@ -26,6 +34,7 @@ const Cal: NextPage = () => {
   const [popupDate, setPopupDate] = useState(1)
   const [inputMonth, setInputMonth] = useState(month)
   const [inputYear, setInputYear] = useState(year)
+  const [todos, setTodos] = useState<CalTodo[]>([])
   const router = useRouter()
 
   useEffect(() => {
@@ -93,6 +102,8 @@ const Cal: NextPage = () => {
           setYear={setYear}
           setInputMonth={setInputMonth}
           setInputYear={setInputYear}
+          todos={todos}
+          setTodos={setTodos}
         />
       </CalendarContainerStyle>
     </>
