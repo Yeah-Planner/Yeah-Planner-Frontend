@@ -89,6 +89,8 @@ const DayPopup: NextPage<Props> = ({
       .digest('hex')
   }
   const handleSubmit = (id: string) => {
+    if (!content) return
+
     setTodos([
       ...todos,
       {

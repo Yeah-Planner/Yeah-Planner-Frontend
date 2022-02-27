@@ -89,6 +89,7 @@ const Calendar: NextPage<Props> = ({
                         key={j}
                         toggleShow={toggleShow}
                         setPopupDate={setPopupDate}
+                        todos={[]}
                       />
                     )
                     // return <TableDayDisalbedStyle key={j} />
@@ -105,6 +106,10 @@ const Calendar: NextPage<Props> = ({
                       date={date}
                       toggleShow={toggleShow}
                       setPopupDate={setPopupDate}
+                      todos={todos.filter(
+                        ({ year: y, month: m, date: d }) =>
+                          y === year && m === month && d === date
+                      )}
                     />
                   )
                 })}

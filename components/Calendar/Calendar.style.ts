@@ -110,6 +110,7 @@ export const CalendarTableStyle = styled.table`
   border: none;
   border-collapse: collapse;
   border-spacing: 0;
+  table-layout: fixed;
 `
 
 export const TableHeaderStyle = styled.td`
@@ -250,14 +251,13 @@ export const DayPopupTodoListStyle = styled.div`
   margin-top: 1rem;
   width: 100%;
   height: 100%;
-  border: 1px solid #ccc;
   margin-bottom: 1rem;
   padding: 0.5rem;
-  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.003),
+  /* box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.003),
     0.1px 0.1px 5.3px rgba(0, 0, 0, 0.004),
     0.1px 0.1px 10px rgba(0, 0, 0, 0.005),
     0.2px 0.2px 17.9px rgba(0, 0, 0, 0.006),
-    0.4px 0.4px 33.4px rgba(0, 0, 0, 0.007), 1px 1px 80px rgba(0, 0, 0, 0.01);
+    0.4px 0.4px 33.4px rgba(0, 0, 0, 0.007), 1px 1px 80px rgba(0, 0, 0, 0.01); */
 `
 
 export const DayPopupTodoListHeaderStyle = styled.div`
@@ -294,7 +294,8 @@ export const DayPopupTodoItemContainerStyle = styled.div`
   flex-direction: column;
   margin-top: 0.5rem;
   width: 100%;
-  height: 100%;
+
+  max-height: 71%;
   overflow: auto;
 `
 
@@ -313,4 +314,14 @@ export const DayPopupTodoItemRemoveButtonStyle = styled(
   DayPopupTodoAddButtonStyle
 )`
   width: 15%;
+`
+
+export const DayTodoItemStyle = styled.div`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`
+
+export const DayPopupItemTitleStyle = styled.div`
+  word-break: break-all;
 `
