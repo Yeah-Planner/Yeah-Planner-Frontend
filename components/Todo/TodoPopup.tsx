@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { TodoItem } from '../../pages/todo'
 import {
@@ -17,7 +18,6 @@ import {
 } from './Todo.style'
 
 interface Props {
-  show: boolean
   item: TodoItem
   close(): void
   toggleTodo(id: string): void
@@ -27,7 +27,6 @@ interface Props {
 }
 
 const TodoPopup: NextPage<Props> = ({
-  show,
   item: { id, title, completed, content, deadline },
   close,
   toggleTodo,
@@ -38,23 +37,50 @@ const TodoPopup: NextPage<Props> = ({
   const [titleValue, setTitleValue] = useState(title)
   const [deadlineValue, setDeadlineValue] = useState(deadline)
   const [contentValue, setContentValue] = useState(content)
+  const router = useRouter()
 
-  const contentRef = useRef<HTMLTextAreaElement>(null)
+  // const contentRef = useRef<HTMLTextAreaElement>(null)
+
+  // useEffect(() => {
+  // if (contentRef.current) {
+  //   const cols = contentRef.current.cols
+  //   console.log(cols)
+  //   let line = 0
+  //   contentRef.current.value.split('\n').forEach(v => {
+  //     line += Math.floor(v.length / cols) + 1
+  //   })
+  //   contentRef.current.rows = Math.max(line, 10)
+  // }
+  // }, [content])
 
   useEffect(() => {
-    if (contentRef.current) {
-      const cols = contentRef.current.cols
-      console.log(cols)
-
-      let line = 0
-      contentRef.current.value.split('\n').forEach(v => {
-        line += Math.floor(v.length / cols) + 1
-      })
-      contentRef.current.rows = Math.max(line, 10)
+    router.push({
+      hash: 'popup',
+    })
+    const escAction = (e: KeyboardEvent) => {
+      close()
     }
-  }, [content])
+    const handleBackspace = (e: HashChangeEvent) => {
+      if (e.oldURL.length > e.newURL.length) {
+        e.preventDefault()
+        close()
+      }
+    }
 
-  return show ? (
+    window.addEventListener('keydown', escAction)
+    window.addEventListener('hashchange', handleBackspace)
+
+    return () => {
+      router.push({
+        hash: '',
+      })
+
+      window.removeEventListener('keydown', escAction)
+      window.removeEventListener('hashchange', handleBackspace)
+    }
+  }, [])
+
+  return (
     <>
       <TodoPopupBackgroundStyle
         onClick={e => {
@@ -153,7 +179,7 @@ const TodoPopup: NextPage<Props> = ({
         />
       </TodoPopupStyle>
     </>
-  ) : null
+  )
 }
 
 export default TodoPopup
