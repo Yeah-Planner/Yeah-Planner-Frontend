@@ -41,18 +41,26 @@ const TodoPopup: NextPage<Props> = ({
 
   const contentRef = useRef<HTMLTextAreaElement>(null)
 
-  useEffect(() => {
-    if (contentRef.current) {
-      const cols = contentRef.current.cols
-      console.log(cols)
+  // useEffect(() => {
+  // if (contentRef.current) {
+  //   const cols = contentRef.current.cols
+  //   console.log(cols)
+  //   let line = 0
+  //   contentRef.current.value.split('\n').forEach(v => {
+  //     line += Math.floor(v.length / cols) + 1
+  //   })
+  //   contentRef.current.rows = Math.max(line, 10)
+  // }
+  // }, [content])
 
-      let line = 0
-      contentRef.current.value.split('\n').forEach(v => {
-        line += Math.floor(v.length / cols) + 1
-      })
-      contentRef.current.rows = Math.max(line, 10)
+  useEffect(() => {
+    const escAction = (e: KeyboardEvent) => {
+      close()
     }
-  }, [content])
+    window.addEventListener('keydown', escAction)
+
+    return () => window.removeEventListener('keydown', escAction)
+  }, [])
 
   return show ? (
     <>

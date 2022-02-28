@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import { CalTodo } from '../../pages/cal'
 import {
@@ -104,6 +104,17 @@ const DayPopup: NextPage<Props> = ({
     setContent('')
     //
   }
+
+  useEffect(() => {
+    const escAction = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose()
+    }
+    window.addEventListener('keydown', escAction)
+
+    return () => {
+      window.removeEventListener('keydown', escAction)
+    }
+  }, [])
 
   return (
     <DayPopupBackgroundStyle>

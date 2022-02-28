@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { useState } from 'react'
 import { CalTodo } from '../../pages/cal'
 import {
   DayTodoItemStyle,
