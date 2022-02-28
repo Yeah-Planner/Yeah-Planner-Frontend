@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styled, { keyframes } from 'styled-components'
 
 export const HeaderStyle = styled.header`
-  width: 100%;
+  width: 100vw;
   height: 3.5rem;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);

@@ -9,16 +9,19 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/react": "^5.10.1",
     "@types/cookies": "^0.7.7",
     "@types/styled-components": "^5.1.15",
     "axios": "^0.24.0",
     "babel-plugin-styled-components": "^1.13.3",
     "cookie-cutter": "^0.2.0",
     "cookies": "^0.8.0",
-    "next": "12.0.9",
+    "next": "12.1.0",
     "next-images": "^1.8.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
