@@ -1,5 +1,6 @@
 import { createHash } from 'crypto'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import { CalTodo } from '../../pages/cal'
@@ -48,6 +49,7 @@ const DayPopup: NextPage<Props> = ({
   todos,
 }) => {
   const [content, setContent] = useState('')
+  const router = useRouter()
 
   const lastDayOfMonth = new Date(year, month, 0).getDate()
   const handleLeftClick = () => {
@@ -106,13 +108,28 @@ const DayPopup: NextPage<Props> = ({
   }
 
   useEffect(() => {
+    router.push({
+      hash: 'popup',
+    })
     const escAction = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose()
     }
+    const handleBackspace = (e: HashChangeEvent) => {
+      if (e.oldURL.length > e.newURL.length) {
+        e.preventDefault()
+        handleClose()
+      }
+    }
+
     window.addEventListener('keydown', escAction)
+    window.addEventListener('hashchange', handleBackspace)
 
     return () => {
+      router.push({
+        hash: '',
+      })
       window.removeEventListener('keydown', escAction)
+      window.removeEventListener('hashchange', handleBackspace)
     }
   }, [])
 

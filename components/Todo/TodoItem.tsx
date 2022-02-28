@@ -71,17 +71,16 @@ const TodoItemComponent: NextPage<Props> = ({
           </TodoRemoveStyle>
         </div>
       </TodoItemStyle>
-      {show && (
+      {show ? (
         <TodoPopup
           item={item}
-          show={show}
           close={() => setShow(false)}
           toggleTodo={toggleTodo}
           editTitle={editTitle}
           editContent={editContent}
           editDeadline={editDeadline}
         />
-      )}
+      ) : null}
     </>
   )
 }
