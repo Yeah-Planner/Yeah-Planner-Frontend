@@ -325,3 +325,15 @@ export const DayTodoItemStyle = styled.div`
 export const DayPopupItemTitleStyle = styled.div`
   word-break: break-all;
 `
+
+export const DayPopupNavContainerStyle = styled.div`
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+`
+
+export const DayPopupExitContainerStyle = styled.div`
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+`

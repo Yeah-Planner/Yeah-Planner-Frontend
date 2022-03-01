@@ -7,9 +7,11 @@ import { CalTodo } from '../../pages/cal'
 import {
   DayPopupBackgroundStyle,
   DayPopupDateStyle,
+  DayPopupExitContainerStyle,
   DayPopupExitStyle,
   DayPopupExitSvgStyle,
   DayPopupLeftButtonStyle,
+  DayPopupNavContainerStyle,
   DayPopupRightButtonStyle,
   DayPopupStyle,
   DayPopupTodoAddButtonStyle,
@@ -108,9 +110,12 @@ const DayPopup: NextPage<Props> = ({
   }
 
   useEffect(() => {
-    router.push({
-      hash: 'popup',
-    })
+    if (!router.asPath.includes('#popup')) {
+      router.push({
+        hash: 'popup',
+      })
+    }
+
     const escAction = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose()
     }
@@ -137,25 +142,27 @@ const DayPopup: NextPage<Props> = ({
     <DayPopupBackgroundStyle>
       <DayPopupStyle>
         <DayPopupExitStyle>
-          <div>
+          <DayPopupNavContainerStyle>
             <DayPopupLeftButtonStyle onClick={handleLeftClick}>
               <AiOutlineArrowLeft />
             </DayPopupLeftButtonStyle>
             <DayPopupRightButtonStyle onClick={handleRightClick}>
               <AiOutlineArrowRight />
             </DayPopupRightButtonStyle>
-          </div>
-          <DayPopupExitSvgStyle
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            onClick={e => {
-              e.preventDefault()
-              e.stopPropagation()
-              handleClose()
-            }}
-          >
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-          </DayPopupExitSvgStyle>
+          </DayPopupNavContainerStyle>
+          <DayPopupExitContainerStyle>
+            <DayPopupExitSvgStyle
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={e => {
+                e.preventDefault()
+                e.stopPropagation()
+                handleClose()
+              }}
+            >
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </DayPopupExitSvgStyle>
+          </DayPopupExitContainerStyle>
         </DayPopupExitStyle>
         <DayPopupDateStyle>
           {year}.{month}.{date}
